@@ -49,4 +49,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // For ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    // For LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    // For the 'by viewModels()' delegate in fragments
+    implementation(libs.androidx.fragment.ktx)
 }
