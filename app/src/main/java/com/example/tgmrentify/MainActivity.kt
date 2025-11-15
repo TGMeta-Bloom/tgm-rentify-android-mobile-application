@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         // This is the line that makes your bottom nav bar work!
+        //mihili
         binding.bottomNavigation.setupWithNavController(navController)
     }
 }
