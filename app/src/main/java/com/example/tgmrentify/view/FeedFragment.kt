@@ -5,22 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-// Import the 'by viewModels' delegate
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tgmrentify.R
 import com.example.tgmrentify.databinding.FragmentFeedBinding
-import com.example.tgmrentify.viewModel.FeedViewModel
 import com.example.tgmrentify.view.adapter.FeedAdapter
-
+import com.example.tgmrentify.viewModel.FeedViewModel
 
 class FeedFragment : Fragment() {
 
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!
 
-    // UN-comment this line. It will work now!
     private val viewModel: FeedViewModel by viewModels()
-
     private lateinit var feedAdapter: FeedAdapter
 
     override fun onCreateView(
@@ -35,15 +33,13 @@ class FeedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-
-        // Set up the observer
         observeViewModel()
-
-        // Tell the ViewModel to load the data
         viewModel.loadFeed()
 
         binding.btnAddPost.setOnClickListener {
-            // Handle "Add Post" button click
+            // This is the navigation code
+            // It uses the action ID of the arrow you created in the nav_graph
+            findNavController().navigate(R.id.action_feedFragment_to_addPostFragment)
         }
     }
 
@@ -55,7 +51,6 @@ class FeedFragment : Fragment() {
         }
     }
 
-    // UN-comment and implement this function
     private fun observeViewModel() {
         // Observe the 'feedPosts' LiveData
         viewModel.feedPosts.observe(viewLifecycleOwner) { posts ->
@@ -65,9 +60,6 @@ class FeedFragment : Fragment() {
             }
         }
     }
-
-    // We don't need this temporary function anymore!
-    // private fun loadTemporaryData() { ... }
 
     override fun onDestroyView() {
         super.onDestroyView()
