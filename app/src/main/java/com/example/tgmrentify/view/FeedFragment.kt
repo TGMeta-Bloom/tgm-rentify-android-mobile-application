@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +14,7 @@ import com.example.tgmrentify.R
 import com.example.tgmrentify.databinding.FragmentFeedBinding
 import com.example.tgmrentify.view.adapter.FeedAdapter
 import com.example.tgmrentify.viewModel.FeedViewModel
+
 
 class FeedFragment : Fragment() {
 
@@ -37,10 +40,19 @@ class FeedFragment : Fragment() {
         viewModel.loadFeed()
 
         binding.btnAddPost.setOnClickListener {
-            // This is the navigation code
-            // It uses the action ID of the arrow you created in the nav_graph
             findNavController().navigate(R.id.action_feedFragment_to_addPostFragment)
         }
+
+        // --- ADD THIS BLOCK ---
+        // This finds the hamburger menu button and tells it to open the drawer
+        binding.btnMenu.setOnClickListener {
+            // Find the DrawerLayout from the (Main)Activity
+            val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
+
+            // Tell the drawer to open
+            drawerLayout?.openDrawer(GravityCompat.START)
+        }
+        // --- END OF NEW BLOCK ---
     }
 
     private fun setupRecyclerView() {
@@ -52,9 +64,7 @@ class FeedFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        // Observe the 'feedPosts' LiveData
         viewModel.feedPosts.observe(viewLifecycleOwner) { posts ->
-            // When the data changes, submit the new list to the adapter
             posts?.let {
                 feedAdapter.submitList(it)
             }

@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.tgmrentify.R
 import com.example.tgmrentify.utils.SharedPreferencesHelper
-import kotlinx.coroutines.Dispatchers // ⚠️ Needed for background I/O
+import kotlinx.coroutines.Dispatchers // ⚠ Needed for background I/O
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext // ⚠️ Needed for switching threads
+import kotlinx.coroutines.withContext // ⚠ Needed for switching threads
 
 // Import the activities you are navigating to (assuming they are in the .view package)
 // IMPORTANT: You should eventually navigate to LoginActivity, not MainActivity, if not logged in.
