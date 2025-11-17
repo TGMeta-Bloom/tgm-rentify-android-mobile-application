@@ -8,15 +8,17 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/sky_blue"
+            android:background="@color/app_blue"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="@color/white"
             app:title="@string/add_post_title"
@@ -50,8 +52,9 @@
         android:src="@drawable/ic_add_image_placeholder"
         app:layout_constraintStart_toStartOf="@id/tv_add_picture_label"
         app:layout_constraintTop_toBottomOf="@id/tv_add_picture_label"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
-        app:strokeColor="@color/gray"
+
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
+        app:strokeColor="@color/app_divider_gray"
         app:strokeWidth="1dp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -64,7 +67,12 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_image_placeholder">
+        app:layout_constraintTop_toBottomOf="@id/iv_image_placeholder"
+
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_caption"
@@ -82,9 +90,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/sky_blue"
+        android:backgroundTint="@color/app_blue"
         android:text="@string/add_post_post_now"
-        app:cornerRadius="20dp"
+
+        app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

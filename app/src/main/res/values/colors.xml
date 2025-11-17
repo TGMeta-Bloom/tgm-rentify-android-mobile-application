@@ -9,8 +9,4 @@
     <color name="sky_blue">#039BE5</color>
     <color name="bright_yellow">#FFCC3E</color>
     <color name="window_background_light_blue">#E7E7FB</color>
-
-    <color name="colorPrimary">#1A237E</color>  <color name="colorPrimaryDark">#141B65</color>
-
-    <color name="grey_700">#616161</color>  <color name="grey_400">#BDBDBD</color>
 </resources>
