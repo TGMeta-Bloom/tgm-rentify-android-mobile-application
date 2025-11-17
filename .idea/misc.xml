@@ -1,6 +1,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" default="true" />
+<<<<<<< Updated upstream
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
@@ -8,4 +9,6 @@
       </ProjectState>
     </option>
   </component>
+=======
+>>>>>>> Stashed changes
 </project>
