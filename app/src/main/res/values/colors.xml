@@ -13,5 +13,9 @@
     <color name="app_navbar_blue">#0D0D3A</color>
     <color name="app_text_gray">#808080</color>
     <color name="app_divider_gray">#BDBDBD</color>
+    <color name="grey_700">#616161</color>
+    <color name="colorPrimary">#1A237E</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="colorPrimaryDark">#141B65</color>
 
 </resources>
