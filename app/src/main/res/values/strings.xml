@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TGMRentify</string>
+    <string name="app_name">TGMRentifyBackup</string>
 
     <!-- Bottom Navigation -->
     <string name="bottom_nav_home">Home</string>

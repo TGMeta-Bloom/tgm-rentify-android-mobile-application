@@ -13,7 +13,7 @@ class FeedFragment : Fragment(R.layout.fragment_router_container) {
 
         // Only add the fragment if it hasn't been added yet (prevents overlaps on rotation)
         if (childFragmentManager.findFragmentById(R.id.role_specific_container) == null) {
-            
+
             // 1. Retrieve Role from Shared Preferences
             // Make sure to use the same file name and key as LoginActivity
             val sharedPref = requireActivity().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
@@ -23,7 +23,7 @@ class FeedFragment : Fragment(R.layout.fragment_router_container) {
             val targetFragment: Fragment = if (userRole == "Landlord") {
                 // Show Landlord Dashboard
                 // Ideally, this should be using your LandlordFeedFragment if you want to reuse the layout I fixed earlier,
-                // but based on the file search, LandlordDashboardFragment exists. 
+                // but based on the file search, LandlordDashboardFragment exists.
                 // I will use LandlordFeedFragment which I updated with the layout logic.
                 LandlordDashboardFragment()
             } else {
