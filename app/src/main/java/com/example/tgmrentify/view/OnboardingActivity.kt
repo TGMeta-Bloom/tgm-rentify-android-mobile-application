@@ -55,7 +55,7 @@ class OnboardingActivity : AppCompatActivity() {
                 viewPager.currentItem += 1
             } else {
                 sharedPrefs.setOnboardingCompleted(true)
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, RoleSelectionActivity::class.java))
                 finish()
             }
         }
