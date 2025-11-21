@@ -29,7 +29,7 @@ class AddPostFragment : Fragment() {
 
         // Handle the toolbar's back arrow click
         binding.toolbar.setNavigationOnClickListener {
-            // This will navigate back to the previous screen (FeedFragment)
+            // This will navigate back to the previous screen (TenantFeedFragment)
             findNavController().navigateUp()
         }
 
