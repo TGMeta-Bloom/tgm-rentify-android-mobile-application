@@ -11,15 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tgmrentify.R
-
-// CHANGE 1: Update the import to the new binding class
 import com.example.tgmrentify.databinding.FragmentTenantFeedBinding
 import com.example.tgmrentify.view.adapter.FeedAdapter
 import com.example.tgmrentify.viewModel.FeedViewModel
 
+
 class TenantFeedFragment : Fragment() {
 
-    // CHANGE 2: Update the variable type
     private var _binding: FragmentTenantFeedBinding? = null
     private val binding get() = _binding!!
 
@@ -30,7 +28,6 @@ class TenantFeedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // CHANGE 3: Update the inflate call
         _binding = FragmentTenantFeedBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,10 +43,16 @@ class TenantFeedFragment : Fragment() {
             findNavController().navigate(R.id.action_feedFragment_to_addPostFragment)
         }
 
+        // --- ADD THIS BLOCK ---
+        // This finds the hamburger menu button and tells it to open the drawer
         binding.btnMenu.setOnClickListener {
+            // Find the DrawerLayout from the (Main)Activity
             val drawerLayout = activity?.findViewById<DrawerLayout>(R.id.drawer_layout)
+
+            // Tell the drawer to open
             drawerLayout?.openDrawer(GravityCompat.START)
         }
+        // --- END OF NEW BLOCK ---
     }
 
     private fun setupRecyclerView() {

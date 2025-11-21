@@ -13,17 +13,10 @@ class MyPostsAdapter(private val onDeleteClick: (Post) -> Unit) :
 
     class MyPostViewHolder(private val binding: ItemMyPostBinding, val onDeleteClick: (Post) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(post: Post) {
             binding.tvCaption.text = post.caption
             binding.btnHelpfulCount.text = "${post.helpfulCount} Helpful"
-
-            // Load image here using Glide if you have it setup
-            // Glide.with(binding.root).load(post.postImageUrl).into(binding.ivPostImage)
-
-            binding.btnDelete.setOnClickListener {
-                onDeleteClick(post)
-            }
+            binding.btnDelete.setOnClickListener { onDeleteClick(post) }
         }
     }
 

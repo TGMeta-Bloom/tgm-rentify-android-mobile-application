@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.AddPostFragment">
+    android:layout_height="match_parent">
 
-    <!--
-       HEADER CONTAINER
-       1. Height is fixed to 177dp (Tall).
-       2. Background is the rounded blue drawable.
-       3. gravity="center_vertical" forces the Toolbar inside to float in the middle.
-    -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="0dp"
@@ -19,32 +11,23 @@
         android:background="@drawable/rounded_drawer_header_bg"
         android:gravity="center_vertical"
         app:elevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!--
-           TOOLBAR
-           1. Height is standard (?attr/actionBarSize) so elements align correctly.
-           2. Background is transparent (because the parent handles the blue color).
-        -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
-            android:textStyle="bold"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="@color/white"
-            app:title="@string/add_post_title"
+            app:title="Add New Post"
             app:titleCentered="true"
             app:titleTextColor="@color/white"
-            app:titleTextAppearance="@style/TextAppearance.Material3.ActionBar.Title"/>
-
-
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- "Add Picture" Label -->
     <TextView
         android:id="@+id/tv_add_picture_label"
         android:layout_width="wrap_content"
@@ -58,7 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
 
-    <!-- Image Placeholder Box (Rounded corners) -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image_placeholder"
         android:layout_width="80dp"
@@ -71,11 +53,11 @@
         android:src="@drawable/ic_add_image_placeholder"
         app:layout_constraintStart_toStartOf="@id/tv_add_picture_label"
         app:layout_constraintTop_toBottomOf="@id/tv_add_picture_label"
+
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
         app:strokeColor="@color/app_divider_gray"
         app:strokeWidth="1dp" />
 
-    <!-- Caption Input (Rounded corners) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_caption"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -84,13 +66,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:boxCornerRadiusBottomEnd="12dp"
-        app:boxCornerRadiusBottomStart="12dp"
-        app:boxCornerRadiusTopEnd="12dp"
-        app:boxCornerRadiusTopStart="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_image_placeholder">
+        app:layout_constraintTop_toBottomOf="@id/iv_image_placeholder"
+
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_caption"
@@ -103,19 +86,19 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Post Button (Pill Shape) -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_post_now"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:layout_marginBottom="148dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/app_blue"
+
         android:text="@string/add_post_post_now"
         app:cornerRadius="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
