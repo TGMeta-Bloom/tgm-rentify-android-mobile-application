@@ -1,4 +1,4 @@
-package com.example.tgmrentify.viewmodel
+package com.example.tgmrentify.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

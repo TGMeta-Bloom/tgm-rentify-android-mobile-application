@@ -28,7 +28,7 @@ class LandlordRepository {
             Property(
                 propertyId = "P002",
                 landlordId = landlordId,
-                title = "Suburban Family House",
+                title = "Family House",
                 location = "Kaduwela",
                 rentAmount = 65000.0,
                 imageUrls = listOf("https://picsum.photos/id/10/200/300")
@@ -36,7 +36,7 @@ class LandlordRepository {
             Property(
                 propertyId = "P003",
                 landlordId = landlordId,
-                title = "Studio Unit near University",
+                title = "Studio near University",
                 location = "Nugegoda",
                 rentAmount = 35000.0,
                 imageUrls = listOf("https://picsum.photos/id/20/200/300")
@@ -44,7 +44,7 @@ class LandlordRepository {
                     Property(
                         propertyId = "P004",
                         landlordId = landlordId,
-                        title = "Studio Unit near University",
+                        title = "Modern Annex",
                         location = "Matara",
                         rentAmount = 35000.0,
                         imageUrls = listOf("https://picsum.photos/id/20/200/300")
@@ -52,7 +52,7 @@ class LandlordRepository {
             Property(
                 propertyId = "P004",
                 landlordId = landlordId,
-                title = "Studio Unit near University",
+                title = "villa near University",
                 location = "Akuressa",
                 rentAmount = 35000.0,
                 imageUrls = listOf("https://picsum.photos/id/20/200/300")
