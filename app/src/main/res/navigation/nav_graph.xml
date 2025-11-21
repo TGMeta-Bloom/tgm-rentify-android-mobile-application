@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.example.tgmrentify.view.FeedFragment"
-        android:label="fragment_feed"
-        tools:layout="@layout/fragment_feed" >
+        android:name="com.example.tgmrentify.view.TenantFeedFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_router_container">
         <action
             android:id="@+id/action_feedFragment_to_addPostFragment"
             app:destination="@id/addPostFragment" />
@@ -18,18 +18,27 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.tgmrentify.view.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_router_container">
+        <action
+            android:id="@+id/action_feedFragment_to_addPostFragment"
+            app:destination="@id/addPostFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.tgmrentify.view.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/myPostsFragment"
+        android:name="com.example.tgmrentify.view.MyPostsFragment"
+        android:label="My Posts"
+        tools:layout="@layout/fragment_my_posts" />
 
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.tgmrentify.view.AddPostFragment"
-        android:label="fragment_add_post"
+        android:label="Add Post"
         tools:layout="@layout/fragment_add_post" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.tgmrentify.view.ProfileFragment"
+        android:label="Profile" />
 </navigation>
