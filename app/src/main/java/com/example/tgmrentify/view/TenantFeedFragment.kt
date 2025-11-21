@@ -11,14 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tgmrentify.R
-import com.example.tgmrentify.databinding.FragmentFeedBinding
+import com.example.tgmrentify.databinding.FragmentTenantFeedBinding
 import com.example.tgmrentify.view.adapter.FeedAdapter
 import com.example.tgmrentify.viewModel.FeedViewModel
 
 
 class TenantFeedFragment : Fragment() {
 
-    private var _binding: FragmentFeedBinding? = null
+    private var _binding: FragmentTenantFeedBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: FeedViewModel by viewModels()
@@ -28,7 +28,7 @@ class TenantFeedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFeedBinding.inflate(inflater, container, false)
+        _binding = FragmentTenantFeedBinding.inflate(inflater, container, false)
         return binding.root
     }
 

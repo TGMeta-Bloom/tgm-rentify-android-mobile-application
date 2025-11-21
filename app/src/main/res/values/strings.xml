@@ -11,5 +11,15 @@
     <string name="add_post_add_picture">Add Picture</string>
     <string name="add_post_caption_hint">Add a Post / Ask a Question</string>
     <string name="add_post_post_now">Post Now</string>
+
+
     <string name="onboarding_image_desc">Illustration related to property search.</string>
+    <string name="city_area">City / Area</string>
+    <string name="background_image_desc">Background Image</string>
+    <string-array name="city_array">
+        <item>Colombo</item>
+        <item>Kandy</item>
+        <item>Galle</item>
+    </string-array>
+
 </resources>
