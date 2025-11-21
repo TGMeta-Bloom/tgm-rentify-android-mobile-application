@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TGMRentify</string>
+    <string name="app_name">TGMRentifyBackup</string>
 
     <!-- Bottom Navigation -->
     <string name="bottom_nav_home">Home</string>
@@ -11,4 +11,5 @@
     <string name="add_post_add_picture">Add Picture</string>
     <string name="add_post_caption_hint">Add a Post / Ask a Question</string>
     <string name="add_post_post_now">Post Now</string>
+    <string name="onboarding_image_desc">Illustration related to property search.</string>
 </resources>
