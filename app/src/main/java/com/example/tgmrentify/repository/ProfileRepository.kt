@@ -16,7 +16,7 @@ class ProfileRepository {
     val userData: LiveData<User?> = _userData
 
     companion object {
-        // Global mock user state shared across the app
+
         private var globalMockUser = User(
             userId = "mock_user_123",
             firstName = "Thamasha",
@@ -30,7 +30,7 @@ class ProfileRepository {
             coverImageUrl = null
         )
 
-        // Static function to update role from RoleSelectionActivity
+
         fun updateRole(newRole: String) {
             globalMockUser = globalMockUser.copy(role = newRole)
         }
