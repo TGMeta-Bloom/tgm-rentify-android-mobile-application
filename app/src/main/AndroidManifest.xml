@@ -6,7 +6,8 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" /> <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+        android:maxSdkVersion="32" /> 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -33,8 +34,8 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".view.OnboardingActivity" />
-        <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.RoleSelectionActivity" />
+        <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.RegisterActivity" />
 
         <activity android:name=".view.ForgotPasswordRequestActivity" />
@@ -50,17 +51,6 @@
         <!-- Account Delete Activity -->
         <activity android:name=".view.AccountDeleteActivity" />
         
-        <!-- App Settings Activity -->
-        <activity android:name=".view.AppSettingsActivity" />
-
-        <!-- Profile Section Activities -->
-        <activity android:name=".view.ProfileInfoActivity" />
-        <activity android:name=".view.AccountPrivacyActivity" />
-        <activity android:name=".view.ChangePasswordActivity" />
-
-        <!-- Account Delete Activity -->
-        <activity android:name=".view.AccountDeleteActivity" />
-
         <!-- App Settings Activity -->
         <activity android:name=".view.AppSettingsActivity" />
 
