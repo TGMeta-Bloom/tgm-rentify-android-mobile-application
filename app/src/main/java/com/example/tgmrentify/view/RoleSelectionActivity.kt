@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.tgmrentify.R
+import com.example.tgmrentify.repository.ProfileRepository
 
 class RoleSelectionActivity : AppCompatActivity() {
 
@@ -22,14 +23,20 @@ class RoleSelectionActivity : AppCompatActivity() {
         val needHelpLayout: LinearLayout = findViewById(R.id.text_need_help)
 
         landlordCard.setOnClickListener {
-            // Navigate to Login/Register with "Landlord" role pre-selected/implied
+            // Update GLOBAL MOCK STATE to Landlord
+            ProfileRepository.updateRole("Landlord")
+            
+            // Navigate to Login/Register
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("selected_role", "Landlord")
             startActivity(intent)
         }
 
         tenantCard.setOnClickListener {
-            // Navigate to Login/Register with "Tenant" role pre-selected/implied
+            // Update GLOBAL MOCK STATE to Tenant
+            ProfileRepository.updateRole("Tenant")
+            
+            // Navigate to Login/Register
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("selected_role", "Tenant")
             startActivity(intent)
