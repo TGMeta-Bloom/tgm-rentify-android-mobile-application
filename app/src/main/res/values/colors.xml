@@ -13,9 +13,16 @@
     <color name="app_navbar_blue">#0D0D3A</color>
     <color name="app_text_gray">#808080</color>
     <color name="app_divider_gray">#BDBDBD</color>
+    <color name="tgm_dark_blue">#0D0D60</color>
+    <color name="rentify_teal">#007FA3</color>
+
+
     <color name="grey_700">#616161</color>
     <color name="colorPrimary">#1A237E</color>
     <color name="grey_400">#BDBDBD</color>
     <color name="colorPrimaryDark">#141B65</color>
+    <color name="gold_accent">#FFD700</color>
+    <color name="colorAccent">#FFC107</color> <color name="accent_400">#FFA000</color>
+    <color name="light_yellow_input">#FFF9C4</color> <color name="primary_200">#90CAF9</color>
 
 </resources>
