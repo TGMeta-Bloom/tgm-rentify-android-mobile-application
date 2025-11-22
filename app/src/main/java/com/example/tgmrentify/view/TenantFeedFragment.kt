@@ -67,6 +67,7 @@ class TenantFeedFragment : Fragment() {
         viewModel.feedPosts.observe(viewLifecycleOwner) { posts ->
             posts?.let {
                 feedAdapter.submitList(it)
+                binding.rvFeed.scheduleLayoutAnimation()
             }
         }
     }
