@@ -9,8 +9,8 @@
     <color name="sky_blue">#039BE5</color>
     <color name="bright_yellow">#FFCC3E</color>
     <color name="window_background_light_blue">#E7E7FB</color>
-<<<<<<< Updated upstream
-=======
+
+
     <color name="app_blue">#56BCEE</color>
     <color name="app_navbar_blue">#0D0D3A</color>
     <color name="app_text_gray">#808080</color>
@@ -29,5 +29,5 @@
     <color name="primary_200">#FFE79D</color>
     <color name="red">#FF0000</color>
     <color name="accent_400">#35AFEA</color>
->>>>>>> Stashed changes
+
 </resources>
