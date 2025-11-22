@@ -3,7 +3,7 @@
     <!-- Selected State -->
     <item android:state_selected="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/accent_400" />
+            <solid android:color="@color/landlord_filter_selected_bg" />
             <corners android:radius="20dp" />
         </shape>
     </item>
@@ -11,7 +11,7 @@
     <!-- Default State -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/app_text_gray" />
+            <solid android:color="@color/landlord_filter_unselected_bg" />
             <corners android:radius="20dp" />
         </shape>
     </item>

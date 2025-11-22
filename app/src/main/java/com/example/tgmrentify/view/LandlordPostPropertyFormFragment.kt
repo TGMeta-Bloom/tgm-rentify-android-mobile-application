@@ -1,5 +1,7 @@
 package com.example.tgmrentify.view
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tgmrentify.R
@@ -31,6 +34,17 @@ class LandlordPostPropertyFormFragment : Fragment() {
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             binding.ivPropertyImagePreview.setImageURI(uri)
+        }
+    }
+
+    // Permission Launcher
+    private val requestCameraPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            takePictureLauncher.launch(null)
+        } else {
+            Toast.makeText(requireContext(), "Camera permission is required to take photos.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -71,7 +85,7 @@ class LandlordPostPropertyFormFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please fill in all required fields", Toast.LENGTH_SHORT).show()
             }
         }
-        
+
         binding.btnAddImage.setOnClickListener {
             showImageSourceDialog()
         }
@@ -93,11 +107,32 @@ class LandlordPostPropertyFormFragment : Fragment() {
             .setTitle("Select Image Source")
             .setItems(options) { dialog, which ->
                 when (which) {
-                    0 -> takePictureLauncher.launch(null) // Camera
+                    0 -> checkCameraPermissionAndLaunch() // Check permission before launching
                     1 -> pickImageLauncher.launch("image/*") // Gallery
                 }
             }
             .show()
+    }
+
+    private fun checkCameraPermissionAndLaunch() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                // Permission is granted
+                takePictureLauncher.launch(null)
+            }
+            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
+                // Show an explanation to the user
+                Toast.makeText(requireContext(), "Camera permission is needed to take property photos.", Toast.LENGTH_LONG).show()
+                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
+            else -> {
+                // Request permission
+                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
+        }
     }
 
     override fun onDestroyView() {
