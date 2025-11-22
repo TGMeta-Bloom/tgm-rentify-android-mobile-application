@@ -17,23 +17,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. Setup Navigation Controller (Standard)
+        // 1. Setup Navigation Controller
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // 2. Connect the Bars (Standard)
+        // 2. Connect the Bars
         binding.bottomNavigation.setupWithNavController(navController)
         binding.navView.setupWithNavController(navController)
 
-        // 3. DYNAMIC SETUP: Check who is logged in
+        // 3. Dynamic Setup
         setupUserInterface()
     }
 
     private fun setupUserInterface() {
         val sharedPref = getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-
-        // Default to "tenant" for now so you can see your design
-        val userRole = sharedPref.getString("user_role", "tenant")
+        val userRole = sharedPref.getString("user_role", "tenant") // Default
 
         if (userRole == "tenant") {
             setupTenantDesign()
@@ -44,28 +42,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupTenantDesign() {
         val navView = binding.navView
-
-        // --- HERE IS THE MAGIC ---
-
-        // 1. Apply the Background (Blue + Rounded + Image at Bottom)
-        // We utilize the file you already created in res/drawable/
+        // Apply Blue Background + Image (defined in drawable)
         navView.setBackgroundResource(R.drawable.nav_drawer_background)
-
-        // 2. Load Your Header
+        // Load Layouts
         navView.inflateHeaderView(R.layout.nav_header_main)
-
-        // 3. Load Your Menu
         navView.inflateMenu(R.menu.nav_drawer_menu)
-
-        // 4. Set Text/Icon Colors to White
+        // Set Colors
         val white = ContextCompat.getColorStateList(this, R.color.white)
         navView.itemIconTintList = white
         navView.itemTextColor = white
     }
 
     private fun setupLandlordDesign() {
-        // Your friend can configure her drawer here later.
-        // For now, we leave it blank or set a simple white background.
         binding.navView.setBackgroundColor(getColor(android.R.color.white))
     }
 }
