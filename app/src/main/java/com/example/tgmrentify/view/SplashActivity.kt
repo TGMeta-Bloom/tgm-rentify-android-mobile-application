@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Apply Theme Preference immediately on startup
+        // Apply Theme Preference for startup
         val sharedPreferences = getSharedPreferences("THEME_PREF", Context.MODE_PRIVATE)
         val isDarkMode = sharedPreferences.getBoolean("is_dark_mode", false)
 
