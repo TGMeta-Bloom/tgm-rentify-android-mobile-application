@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tgmrentify.R // Make sure to import your R for icons
+import com.example.tgmrentify.R
 import com.example.tgmrentify.databinding.FragmentLibraryBinding
 import com.example.tgmrentify.model.LibraryArticle
 import com.example.tgmrentify.model.LibraryCategory
@@ -62,6 +62,9 @@ class LibraryFragment : Fragment() {
             val bottomSheet = ArticleBottomSheet(article)
             bottomSheet.show(parentFragmentManager, "ArticleSheet")
         }
+
+        // --- CRITICAL: TRIGGER THE ANIMATION ---
+        binding.rvLibrary.scheduleLayoutAnimation()
     }
 
     override fun onDestroyView() { super.onDestroyView(); _binding = null }
