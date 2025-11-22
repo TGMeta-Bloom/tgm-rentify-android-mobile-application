@@ -35,6 +35,8 @@ class MyPostsFragment : Fragment() {
         binding.rvMyPosts.layoutManager = LinearLayoutManager(requireContext())
         binding.rvMyPosts.adapter = adapter
 
+        binding.rvMyPosts.scheduleLayoutAnimation()
+
         loadDummyData()
     }
 

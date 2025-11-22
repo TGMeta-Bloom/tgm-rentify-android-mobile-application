@@ -17,6 +17,7 @@ class MyPostsAdapter(private val onDeleteClick: (Post) -> Unit) :
             binding.tvCaption.text = post.caption
             binding.btnHelpfulCount.text = "${post.helpfulCount} Helpful"
             binding.btnDelete.setOnClickListener { onDeleteClick(post) }
+            binding.tvTimestamp.text = post.timestamp
         }
     }
 

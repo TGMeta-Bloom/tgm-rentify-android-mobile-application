@@ -1,10 +1,16 @@
 package com.example.tgmrentify.view
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.tgmrentify.databinding.FragmentAddPostBinding
@@ -13,6 +19,33 @@ class AddPostFragment : Fragment() {
 
     private var _binding: FragmentAddPostBinding? = null
     private val binding get() = _binding!!
+
+    // Variable to store the selected image URI
+    private var selectedImageUri: Uri? = null
+
+    // 1. Launcher to Open Gallery
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        if (uri != null) {
+            selectedImageUri = uri
+            // Show the selected image in the UI
+            binding.ivImagePlaceholder.setImageURI(uri)
+            binding.ivImagePlaceholder.imageTintList = null // Remove the grey tint
+            binding.tvAddPictureLabel.text = "Change Photo" // Update text
+        }
+    }
+
+    // 2. Launcher to Request Permissions
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        // Check if permission was granted
+        val isGranted = permissions.entries.all { it.value }
+        if (isGranted) {
+            openGallery()
+        } else {
+            Toast.makeText(requireContext(), "Permission Denied. Cannot access photos.", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,35 +58,49 @@ class AddPostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // --- Setup Click Listeners ---
-
-        // Handle the toolbar's back arrow click
+        // Back Button Logic
         binding.toolbar.setNavigationOnClickListener {
-            // This will navigate back to the previous screen (TenantFeedFragment)
             findNavController().navigateUp()
         }
 
-        // Handle "Add Picture" click
-        binding.ivImagePlaceholder.setOnClickListener {
-            // TODO: Launch image picker from gallery or camera
-            Toast.makeText(requireContext(), "Add Picture clicked", Toast.LENGTH_SHORT).show()
+        // "Add Photo" Click Logic
+        binding.cardImageUpload.setOnClickListener {
+            checkPermissionsAndOpenGallery()
         }
 
-        // Handle "Post Now" click
+        // "Post Now" Logic
         binding.btnPostNow.setOnClickListener {
             val caption = binding.etCaption.text.toString()
-
             if (caption.isBlank()) {
-                binding.tilCaption.error = "Caption cannot be empty"
+                Toast.makeText(requireContext(), "Please write something!", Toast.LENGTH_SHORT).show()
             } else {
-                binding.tilCaption.error = null // Clear error
-                // TODO: Send data to a ViewModel to save the new post
                 Toast.makeText(requireContext(), "Posting...", Toast.LENGTH_SHORT).show()
-
-                // Navigate back to the feed after "posting"
+                // Later: We will save this data to the list
                 findNavController().navigateUp()
             }
         }
+    }
+
+    private fun checkPermissionsAndOpenGallery() {
+        // Determine which permission to ask for based on Android Version
+        val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Manifest.permission.READ_MEDIA_IMAGES // Android 13+
+        } else {
+            Manifest.permission.READ_EXTERNAL_STORAGE // Android 12 and below
+        }
+
+        // Check if we already have it
+        if (ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED) {
+            openGallery()
+        } else {
+            // Request it
+            requestPermissionLauncher.launch(arrayOf(permission))
+        }
+    }
+
+    private fun openGallery() {
+        // Launch the gallery picker for images
+        pickImageLauncher.launch("image/*")
     }
 
     override fun onDestroyView() {
