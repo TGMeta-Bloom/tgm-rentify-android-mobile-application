@@ -1,0 +1,63 @@
+package com.example.tgmrentify.view.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.tgmrentify.R
+import com.example.tgmrentify.databinding.LandlordItemPropertyGridBinding
+import com.example.tgmrentify.model.Property
+
+class LandlordGridAdapter(
+    private val onDetailsClick: (Property) -> Unit
+) : ListAdapter<Property, LandlordGridAdapter.PropertyViewHolder>(PropertyDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
+        val binding = LandlordItemPropertyGridBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return PropertyViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+
+    inner class PropertyViewHolder(private val binding: LandlordItemPropertyGridBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(property: Property) {
+            binding.textPropertyTitle.text = property.title
+            binding.textPropertyLocation.text = "City: ${property.location}"
+
+            // Image Loading
+            // Use the static image requested by the user
+            binding.imageProperty.setImageResource(R.drawable.ic_property_image2)
+
+            // Glide.with(binding.imageProperty.context)
+            //    .load(imageUrl)
+            //    .placeholder(R.drawable.ic_add_image_placeholder2) 
+            //    .error(R.drawable.ic_launcher_foreground) 
+            //    .centerCrop()
+            //    .into(binding.imageProperty)
+
+            // Handle clicks
+            binding.btnDetails.setOnClickListener { onDetailsClick(property) }
+            binding.root.setOnClickListener { onDetailsClick(property) }
+        }
+    }
+
+    class PropertyDiffCallback : DiffUtil.ItemCallback<Property>() {
+        override fun areItemsTheSame(oldItem: Property, newItem: Property): Boolean {
+            return oldItem.propertyId == newItem.propertyId
+        }
+
+        override fun areContentsTheSame(oldItem: Property, newItem: Property): Boolean {
+            return oldItem == newItem
+        }
+    }
+}
