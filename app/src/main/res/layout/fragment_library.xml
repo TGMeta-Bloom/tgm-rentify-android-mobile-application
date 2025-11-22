@@ -4,34 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="#F5F7FA"> <com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/app_bar_layout"
+    android:layout_width="0dp"
+    android:layout_height="160dp"
+    android:background="@drawable/rounded_drawer_header_bg"
+    android:gravity="center_vertical"
+    app:elevation="0dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="417dp"
-        android:layout_height="172dp"
-        android:background="@drawable/rounded_drawer_header_bg"
-        android:gravity="center_vertical"
-        app:elevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/white"
+        app:subtitle="Helpful guides and tips"
+        app:subtitleCentered="true"
+        app:subtitleTextColor="#E0E0E0"
+        app:title="Library"
+        app:titleCentered="true"
+        app:titleTextColor="@color/white" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:navigationIconTint="@color/white"
-            app:subtitle="Helpful guides and tips"
-            app:subtitleCentered="true"
-            app:subtitleTextColor="#E0E0E0"
-            app:title="Library"
-            app:titleCentered="true"
-            app:titleTextColor="@color/white" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+</com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_library"
@@ -39,6 +37,7 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingTop="16dp"
+        android:layoutAnimation="@anim/layout_animation_cascade"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
         tools:listitem="@layout/item_library_category" />
