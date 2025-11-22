@@ -34,6 +34,17 @@
         <activity android:name=".view.ForgotPasswordResetActivity" />
         <activity android:name=".view.ForgotPasswordSuccessActivity" />
 
+        <!-- Profile Section Activities -->
+        <activity android:name=".view.ProfileInfoActivity" />
+        <activity android:name=".view.AccountPrivacyActivity" />
+        <activity android:name=".view.ChangePasswordActivity" />
+
+        <!-- Account Delete Activity -->
+        <activity android:name=".view.AccountDeleteActivity" />
+
+        <!-- App Settings Activity -->
+        <activity android:name=".view.AppSettingsActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
