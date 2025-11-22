@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" /> <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,15 +21,58 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TGMRentify">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".view.OnboardingActivity" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.RoleSelectionActivity" />
+        <activity android:name=".view.RegisterActivity" />
+
+        <activity android:name=".view.ForgotPasswordRequestActivity" />
+        <activity android:name=".view.ForgotPasswordConfirmActivity" />
+        <activity android:name=".view.ForgotPasswordResetActivity" />
+        <activity android:name=".view.ForgotPasswordSuccessActivity" />
+        
+        <!-- Profile Section Activities -->
+        <activity android:name=".view.ProfileInfoActivity" />
+        <activity android:name=".view.AccountPrivacyActivity" />
+        <activity android:name=".view.ChangePasswordActivity" />
+        
+        <!-- Account Delete Activity -->
+        <activity android:name=".view.AccountDeleteActivity" />
+        
+        <!-- App Settings Activity -->
+        <activity android:name=".view.AppSettingsActivity" />
+
+        <!-- Profile Section Activities -->
+        <activity android:name=".view.ProfileInfoActivity" />
+        <activity android:name=".view.AccountPrivacyActivity" />
+        <activity android:name=".view.ChangePasswordActivity" />
+
+        <!-- Account Delete Activity -->
+        <activity android:name=".view.AccountDeleteActivity" />
+
+        <!-- App Settings Activity -->
+        <activity android:name=".view.AppSettingsActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
