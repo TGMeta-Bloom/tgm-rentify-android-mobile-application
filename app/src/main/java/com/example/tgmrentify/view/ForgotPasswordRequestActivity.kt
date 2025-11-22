@@ -14,6 +14,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 class ForgotPasswordRequestActivity : AppCompatActivity() {
 
+
     private val viewModel: ForgotPasswordViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,7 @@ class ForgotPasswordRequestActivity : AppCompatActivity() {
         tvBackToLogin.setOnClickListener {
             finish()
         }
-        
+
         btnHeaderBack.setOnClickListener {
             finish()
         }

@@ -48,7 +48,8 @@ class ForgotPasswordResetActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        
+
+
         btnHeaderBack.setOnClickListener {
              // Typically navigating back from Reset would go to Login or close the "link" flow
             val intent = Intent(this, LoginActivity::class.java)

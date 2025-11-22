@@ -17,7 +17,7 @@ class ForgotPasswordConfirmActivity : AppCompatActivity() {
         val tvBackToLogin = findViewById<TextView>(R.id.tv_back_to_login)
         val btnHeaderBack = findViewById<ImageView>(R.id.btn_header_back)
         
-        // For testing purposes: Click the "Process Started" text to simulate clicking the email link
+        //  Click the "Process Started" text to simulate clicking the email link
         val tvProcessStarted = findViewById<TextView>(R.id.tv_process_started)
         
         tvBackToLogin.setOnClickListener {
