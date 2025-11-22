@@ -1,20 +1,20 @@
 package com.example.tgmrentify.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.example.tgmrentify.R
 import com.example.tgmrentify.utils.SharedPreferencesHelper
-import kotlinx.coroutines.Dispatchers // ⚠️ Needed for background I/O
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext // ⚠️ Needed for switching threads
+import kotlinx.coroutines.withContext
 
-// Import the activities you are navigating to (assuming they are in the .view package)
-// IMPORTANT: You should eventually navigate to LoginActivity, not MainActivity, if not logged in.
 import com.example.tgmrentify.view.OnboardingActivity
-import com.example.tgmrentify.view.LoginActivity
+import com.example.tgmrentify.view.RoleSelectionActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,27 +22,36 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Launch a coroutine for asynchronous operations
-        lifecycleScope.launch {
+        // Apply Theme Preference immediately on startup
+        val sharedPreferences = getSharedPreferences("THEME_PREF", Context.MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("is_dark_mode", false)
 
-            // 1. Splash Delay (non-blocking)
+        // Check if the preference actually exists (user made a choice), otherwise default to Light Mode
+        if (sharedPreferences.contains("is_dark_mode")) {
+            if (isDarkMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        } else {
+            // Default to Light Mode if no choice made yet
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
+        lifecycleScope.launch {
             delay(2000)
 
-            // 2. Determine Next Activity by checking persistence (I/O)
             val nextActivityClass = withContext(Dispatchers.IO) {
-                // Initialize SharedPreferencesHelper inside the background thread
                 val sharedPrefs = SharedPreferencesHelper(this@SplashActivity)
-
                 if (sharedPrefs.isOnboardingCompleted()) {
-                    // Go to LoginActivity (Your next module) if onboarding is complete
-                    LoginActivity::class.java
+                    // Onboarding complete, go to RoleSelectionActivity
+                    RoleSelectionActivity::class.java
                 } else {
-                    // Go to OnboardingActivity if not completed
+                    // Onboarding not complete, go to OnboardingActivity
                     OnboardingActivity::class.java
                 }
             }
 
-            // 3. Navigate back on the Main Thread
             startActivity(Intent(this@SplashActivity, nextActivityClass))
             finish()
         }
