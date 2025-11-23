@@ -208,8 +208,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                             val sharedPrefsHelper = SharedPreferencesHelper(requireContext())
                             sharedPrefsHelper.clear()
                             
-                            // Perform Logout
-                            val intent = Intent(requireContext(), LoginActivity::class.java)
+                            // Perform Logout -> Redirect to Role Selection
+                            val intent = Intent(requireContext(), RoleSelectionActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
                             requireActivity().finishAffinity()
