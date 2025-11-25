@@ -26,8 +26,8 @@ class ChangePasswordActivity : AppCompatActivity() {
         val etNewPassword = findViewById<EditText>(R.id.et_new_password)
         val etConfirmPassword = findViewById<EditText>(R.id.et_confirm_password)
 
-        // Apply underline to "Forgot Password" text programmatically
-        tvForgot.paintFlags = tvForgot.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        // REMOVED: Programmatic underline
+        // tvForgot.paintFlags = tvForgot.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         btnBack.setOnClickListener {
             finish()
@@ -56,8 +56,8 @@ class ChangePasswordActivity : AppCompatActivity() {
                 // Mock Save Success
                 Toast.makeText(this, "Password changed successfully! Please login again.", Toast.LENGTH_LONG).show()
                 
-                // Navigate to Login (Simulating logout as per security note)
-                val intent = Intent(this, LoginActivity::class.java)
+                // Navigate to Role Selection (Simulating logout/reset)
+                val intent = Intent(this, RoleSelectionActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }
