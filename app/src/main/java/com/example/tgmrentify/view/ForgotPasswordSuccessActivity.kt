@@ -14,7 +14,8 @@ class ForgotPasswordSuccessActivity : AppCompatActivity() {
         val btnBackToLogin = findViewById<Button>(R.id.btn_back_to_login)
 
         btnBackToLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            // Redirect to Role Selection instead of Login to ensure correct role is picked
+            val intent = Intent(this, RoleSelectionActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
