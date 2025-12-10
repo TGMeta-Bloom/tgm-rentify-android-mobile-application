@@ -34,14 +34,19 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            val email = etEmail.text.toString()
+            val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString()
-            
+
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            
+
+            if (!email.endsWith("@gmail.com")) {
+                Toast.makeText(this, "Email must be a @gmail.com address", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             // TODO: Implement login logic with Firebase Auth
             Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
