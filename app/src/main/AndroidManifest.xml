@@ -6,8 +6,7 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" /> 
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+        android:maxSdkVersion="32" /> <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -17,9 +16,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.TGMRentify">
 
@@ -34,25 +33,27 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".view.OnboardingActivity" />
-        <activity android:name=".view.RoleSelectionActivity" />
         <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.RoleSelectionActivity" />
         <activity android:name=".view.RegisterActivity" />
 
         <activity android:name=".view.ForgotPasswordRequestActivity" />
         <activity android:name=".view.ForgotPasswordConfirmActivity" />
         <activity android:name=".view.ForgotPasswordResetActivity" />
         <activity android:name=".view.ForgotPasswordSuccessActivity" />
-        
+
         <!-- Profile Section Activities -->
         <activity android:name=".view.ProfileInfoActivity" />
         <activity android:name=".view.AccountPrivacyActivity" />
         <activity android:name=".view.ChangePasswordActivity" />
-        
+
         <!-- Account Delete Activity -->
         <activity android:name=".view.AccountDeleteActivity" />
-        
+
         <!-- App Settings Activity -->
         <activity android:name=".view.AppSettingsActivity" />
+
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
