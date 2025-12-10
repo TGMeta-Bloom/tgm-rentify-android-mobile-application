@@ -20,6 +20,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.tgmrentify.R
 import com.example.tgmrentify.model.User
@@ -37,11 +38,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private lateinit var ivProfilePhoto: CircleImageView
     private lateinit var btnEditProfilePhoto: ImageButton
     private lateinit var tvProfileName: TextView
-    
+
     // Separate Views for Icon and Text
     private lateinit var ivRoleIcon: ImageView
     private lateinit var tvUserRole: TextView
-    
+
     private lateinit var tvProfileBio: TextView
     private lateinit var tvLocation: TextView
     private lateinit var tvEmailContact: TextView
@@ -85,18 +86,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         ivProfilePhoto = view.findViewById(R.id.iv_profile_photo)
         btnEditProfilePhoto = view.findViewById(R.id.btn_edit_profile_photo)
         tvProfileName = view.findViewById(R.id.tv_profile_name)
-        
+
         // Updated Bindings
         ivRoleIcon = view.findViewById(R.id.iv_role_icon)
         tvUserRole = view.findViewById(R.id.tv_user_role)
-        
+
         tvProfileBio = view.findViewById(R.id.tv_profile_bio)
         tvLocation = view.findViewById(R.id.tv_location)
         tvEmailContact = view.findViewById(R.id.tv_email_contact)
         tvPhoneContact = view.findViewById(R.id.tv_phone_contact)
         btnManageProperties = view.findViewById(R.id.btn_manage_properties)
         btnMenu = view.findViewById(R.id.btn_menu)
-        
+
         // Long Press to Toggle Role (Frontend Testing)
         tvProfileName.setOnLongClickListener {
             viewModel.switchRole()
@@ -109,29 +110,29 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 updateUI(user)
             }
         }
-        
+
         viewModel.updateResult.observe(viewLifecycleOwner) { result ->
-             result.onSuccess {
-                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-             }.onFailure {
-                 Toast.makeText(requireContext(), "Update failed: ${it.message}", Toast.LENGTH_SHORT).show()
-             }
+            result.onSuccess {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }.onFailure {
+                Toast.makeText(requireContext(), "Update failed: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // Setup Image Edit Listeners
-        btnEditProfilePhoto.setOnClickListener { 
+        btnEditProfilePhoto.setOnClickListener {
             isEditingProfilePhoto = true
-            showImageSourceDialog() 
+            showImageSourceDialog()
         }
-        
-        btnEditCoverPhoto.setOnClickListener { 
+
+        btnEditCoverPhoto.setOnClickListener {
             isEditingProfilePhoto = false
-            showImageSourceDialog() 
+            showImageSourceDialog()
         }
-        
-        ivCoverPhoto.setOnClickListener { 
+
+        ivCoverPhoto.setOnClickListener {
             isEditingProfilePhoto = false
-            showImageSourceDialog() 
+            showImageSourceDialog()
         }
 
         // Menu Logic - Updated to handle Selection Highlight
@@ -140,19 +141,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val navView = requireActivity().findViewById<NavigationView>(R.id.nav_view)
 
             if (navView != null) {
-                navView.menu.clear() 
+                navView.menu.clear()
                 if (navView.headerCount > 0) {
                     navView.removeHeaderView(navView.getHeaderView(0))
                 }
                 // Inflate custom layout
                 val headerView = navView.inflateHeaderView(R.layout.nav_drawer_custom_layout)
-                
+
                 // Bind User Info to Header
                 currentUser?.let { user ->
                     headerView.findViewById<TextView>(R.id.drawer_user_name)?.text = "${user.firstName} ${user.lastName}"
                     val headerImage = headerView.findViewById<ImageView>(R.id.drawer_profile_photo)
                     if (!user.profileImageUrl.isNullOrEmpty() && headerImage != null) {
-                         Glide.with(this).load(user.profileImageUrl).placeholder(R.drawable.ic_default_profile).into(headerImage)
+                        Glide.with(this).load(user.profileImageUrl).placeholder(R.drawable.ic_default_profile).into(headerImage)
                     }
                 }
 
@@ -172,8 +173,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 navItems.forEachIndexed { index, item ->
                     item?.setOnClickListener {
                         clearSelection()
-                        item.isSelected = true 
-                        
+                        item.isSelected = true
+
                         when (index) {
                             0 -> { // Profile Info
                                 val intent = Intent(requireContext(), ProfileInfoActivity::class.java)
@@ -207,9 +208,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                             // Clear SharedPreferences
                             val sharedPrefsHelper = SharedPreferencesHelper(requireContext())
                             sharedPrefsHelper.clear()
-                            
-                            // Perform Logout -> Redirect to Role Selection
-                            val intent = Intent(requireContext(), RoleSelectionActivity::class.java)
+
+                            // Perform Logout
+                            val intent = Intent(requireContext(), LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
                             requireActivity().finishAffinity()
@@ -222,9 +223,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
             drawerLayout?.openDrawer(GravityCompat.START)
         }
-        
+
         btnManageProperties.setOnClickListener {
-            Toast.makeText(requireContext(), "Navigating to Manage Properties", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_profileFragment_to_LandlordAddPropertyFragment)
         }
 
         viewModel.loadProfileData()
@@ -296,7 +297,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         if (navView != null) {
             navView.menu.clear()
             if (navView.headerCount > 0) {
-                 navView.removeHeaderView(navView.getHeaderView(0))
+                navView.removeHeaderView(navView.getHeaderView(0))
             }
             navView.inflateHeaderView(R.layout.nav_drawer_custom_layout)
         }
@@ -327,24 +328,24 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         } else {
             ivProfilePhoto.setImageResource(R.drawable.ic_default_profile)
         }
-        
+
         if (!user.coverImageUrl.isNullOrEmpty()) {
-             Glide.with(this).load(user.coverImageUrl).placeholder(R.drawable.bg_login_header).into(ivCoverPhoto)
+            Glide.with(this).load(user.coverImageUrl).placeholder(R.drawable.bg_login_header).into(ivCoverPhoto)
         } else {
-             ivCoverPhoto.setImageResource(R.drawable.bg_login_header)
+            ivCoverPhoto.setImageResource(R.drawable.bg_login_header)
         }
 
         val role = user.role.trim()
-        
+
         // Update Role Label dynamically
         tvUserRole.text = role
         tvUserRole.visibility = View.VISIBLE
-        
+
         if (role.equals("Landlord", ignoreCase = true)) {
             // Landlord: Show Button, Blue Text, Check Icon
             btnManageProperties.visibility = View.VISIBLE
             tvUserRole.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
-            
+
             ivRoleIcon.visibility = View.VISIBLE
             ivRoleIcon.setImageResource(R.drawable.ic_check_circle_outline)
             ivRoleIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
@@ -352,7 +353,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             // Tenant: Hide Button, Grey Text, User Icon
             btnManageProperties.visibility = View.GONE
             tvUserRole.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
-            
+
             ivRoleIcon.visibility = View.VISIBLE
             ivRoleIcon.setImageResource(R.drawable.ic_check_circle_outline)
             ivRoleIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
