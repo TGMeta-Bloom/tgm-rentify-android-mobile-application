@@ -1,0 +1,10 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph" app:startDestination="@id/feedFragment">
+    <fragment android:id="@+id/feedFragment" android:name="com.example.tgmrentify.view.FeedFragment" android:label="Home" tools:layout="@layout/fragment_router_container">
+        <action android:id="@+id/action_feedFragment_to_addPostFragment" app:destination="@id/addPostFragment"/>
+    </fragment>
+    <fragment android:id="@+id/dashboardFragment" android:name="com.example.tgmrentify.view.DashboardFragment" android:label="Dashboard" tools:layout="@layout/fragment_router_container">
+        <action android:id="@+id/action_feedFragment_to_addPostFragment" app:destination="@id/addPostFragment"/>
+    </fragment>
+    <fragment android:id="@+id/profileFragment" android:name="com.example.tgmrentify.view.ProfileFragment" android:label="Profile" tools:layout="@layout/fragment_profile"/>
+    <fragment android:id="@+id/addPostFragment" android:name="com.example.tgmrentify.view.AddPostFragment" android:label="Add New Post" tools:layout="@layout/fragment_add_post"/>
+</navigation>
