@@ -16,7 +16,7 @@ class ForgotPasswordViewModel : ViewModel() {
         viewModelScope.launch {
             // Simulate network loading
             delay(2000)
-            
+
             if (email.isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 _resetResult.value = Result.success("Reset link sent successfully")
             } else {

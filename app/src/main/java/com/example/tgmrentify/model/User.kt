@@ -8,7 +8,7 @@ data class User(
     val mobileNumber: String = "",
     val bio: String = "",
     val city: String = "",
-    val role: String = "", 
+    val role: String = "",
     val profileImageUrl: String? = null,
-    val coverImageUrl: String? = null // Ensuring this field exists
+    val coverImageUrl: String? = null
 )

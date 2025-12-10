@@ -25,18 +25,18 @@ class RoleSelectionActivity : AppCompatActivity() {
         landlordCard.setOnClickListener {
             // Update GLOBAL MOCK STATE to Landlord
             ProfileRepository.updateRole("Landlord")
-            
-            // Navigate to Login/Register
+
+            // Navigate Login/Register
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("selected_role", "Landlord")
             startActivity(intent)
         }
 
         tenantCard.setOnClickListener {
-            // Update GLOBAL MOCK STATE to Tenant
+
             ProfileRepository.updateRole("Tenant")
-            
-            // Navigate to Login/Register
+
+
             val intent = Intent(this, LoginActivity::class.java)
             intent.putExtra("selected_role", "Tenant")
             startActivity(intent)
@@ -55,7 +55,7 @@ class RoleSelectionActivity : AppCompatActivity() {
             .setIcon(android.R.drawable.ic_menu_help)
             .setItems(options) { dialog, which ->
                 when (which) {
-                    0 -> { // Email Support
+                    0 -> {
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
                             data = Uri.parse("mailto:support@rentifyapp.com")
                             putExtra(Intent.EXTRA_SUBJECT, "Help Request - TGM Rentify")
@@ -66,7 +66,7 @@ class RoleSelectionActivity : AppCompatActivity() {
                             Toast.makeText(this, "No email app found.", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    1 -> { // Call Us
+                    1 -> {
                         val intent = Intent(Intent.ACTION_DIAL).apply {
                             data = Uri.parse("tel:+94763939423")
                         }
@@ -76,7 +76,7 @@ class RoleSelectionActivity : AppCompatActivity() {
                             Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    2 -> { // Visit FAQ
+                    2 -> {
                         val url = "https://www.google.com/search?q=rentify+faq" // Placeholder FAQ URL
                         val intent = Intent(Intent.ACTION_VIEW).apply {
                             data = Uri.parse(url)
