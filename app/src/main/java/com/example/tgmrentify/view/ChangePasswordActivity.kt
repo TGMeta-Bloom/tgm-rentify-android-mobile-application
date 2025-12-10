@@ -26,12 +26,13 @@ class ChangePasswordActivity : AppCompatActivity() {
         val etNewPassword = findViewById<EditText>(R.id.et_new_password)
         val etConfirmPassword = findViewById<EditText>(R.id.et_confirm_password)
 
-        // REMOVED: Programmatic underline
-        // tvForgot.paintFlags = tvForgot.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        // Apply underline to "Forgot Password" text programmatically
+        tvForgot.paintFlags = tvForgot.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         btnBack.setOnClickListener {
             finish()
         }
+        
 
         btnVerify.setOnClickListener {
             val currentPassword = etCurrentPassword.text.toString().trim()
@@ -50,17 +51,27 @@ class ChangePasswordActivity : AppCompatActivity() {
 
             if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-            } else if (newPassword != confirmPassword) {
-                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
-            } else {
-                // Mock Save Success
-                Toast.makeText(this, "Password changed successfully! Please login again.", Toast.LENGTH_LONG).show()
-                
-                // Navigate to Role Selection (Simulating logout/reset)
-                val intent = Intent(this, RoleSelectionActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
+                return@setOnClickListener
             }
+
+            if (newPassword.length < 6) {
+                Toast.makeText(this, "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (newPassword != confirmPassword) {
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Mock Save Success
+            Toast.makeText(this, "Password changed successfully!", Toast.LENGTH_LONG).show()
+
+            // Navigate to Role Selection Screen
+            val intent = Intent(this, RoleSelectionActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
 
         tvForgot.setOnClickListener {
