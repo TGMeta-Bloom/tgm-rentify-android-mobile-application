@@ -6,7 +6,7 @@
 
     <!-- Adjust greys for readability in dark mode -->
     <color name="gray">#BDBDBD</color>
-    <color name="grey_200">#2C2C2C</color> <!-- Darker for input fields/cards -->
+   <color name="grey_200">#2C2C2C</color> <!-- Darker for input fields/cards -->
     <color name="grey_400">#616161</color>
     <color name="grey_700">#E0E0E0</color> <!-- Lighter for text -->
     
