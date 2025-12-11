@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tgmrentify.NavGraphDirections
@@ -111,6 +112,10 @@ class LandlordDashboardFragment : Fragment() {
 
         try {
             // Using GLOBAL ACTION via NavGraphDirections to fix "Destination not found" issues
+<<<<<<< HEAD
+=======
+            // This works regardless of whether the fragment is manually swapped or navigated to
+>>>>>>> 67ce4b75083d97d4749808288c641a5c20adf370
             val action = NavGraphDirections.actionGlobalLandlordDetails(property)
             findNavController().navigate(action)
         } catch (e: Exception) {
