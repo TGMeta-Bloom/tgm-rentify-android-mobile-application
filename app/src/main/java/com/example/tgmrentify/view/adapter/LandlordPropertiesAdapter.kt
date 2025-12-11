@@ -40,14 +40,14 @@ class LandlordPropertiesAdapter(
 
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
         val property = properties[position]
-        
+
         holder.tvTitle.text = property.title
         holder.tvDescription.text = property.description
         holder.tvLocation.text = property.location
         holder.tvPrice.text = "Rs. ${property.rentAmount.toInt()}"
         holder.tvType.text = property.propertyType
         holder.tvContact.text = property.contactNumber
-        
+
         // Load image using Glide
         val imageUrl = property.imageUrls.firstOrNull()
         if (!imageUrl.isNullOrEmpty()) {
@@ -59,7 +59,7 @@ class LandlordPropertiesAdapter(
         } else {
             holder.ivPropertyImage.setImageResource(R.drawable.ic_property_image2)
         }
-        
+
         holder.btnEdit.setOnClickListener { onEditClick(property) }
         holder.btnDelete.setOnClickListener { onDeleteClick(property) }
     }

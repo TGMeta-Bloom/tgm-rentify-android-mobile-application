@@ -17,7 +17,7 @@ class LandlordPropertyDetailsFragment : Fragment() {
 
     private var _binding: FragmentLandlordPropertyDetailsBinding? = null
     private val binding get() = _binding!!
-    
+
     // Argument to receive the passed Property object
     private val args: LandlordPropertyDetailsFragmentArgs by navArgs()
 
@@ -36,7 +36,7 @@ class LandlordPropertyDetailsFragment : Fragment() {
         setupUI(property)
         setupListeners()
     }
-    
+
     private fun setupUI(property: Property) {
         // Bind data to UI elements
         binding.textDetailTitle.text = property.title
@@ -47,9 +47,9 @@ class LandlordPropertyDetailsFragment : Fragment() {
         binding.textDetailType.text = property.propertyType
         binding.textDetailStatus.text = property.status
         binding.textDetailContact.text = property.contactNumber
-        
+
         // Load Image
-         Glide.with(this)
+        Glide.with(this)
             .load(property.imageUrls.firstOrNull())
             .placeholder(R.drawable.ic_property_image2) // Default
             .error(R.drawable.ic_property_image2)

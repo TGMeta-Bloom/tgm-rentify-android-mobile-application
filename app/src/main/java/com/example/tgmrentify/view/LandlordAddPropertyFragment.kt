@@ -34,11 +34,11 @@ class LandlordAddPropertyFragment : Fragment() {
         }
 
         binding.fabAddProperty.setOnClickListener {
-             findNavController().navigate(R.id.action_LandlordAddPropertyFragment_to_LandlordPostPropertyFormFragment)
+            findNavController().navigate(R.id.action_LandlordAddPropertyFragment_to_LandlordPostPropertyFormFragment)
         }
         binding.fabViewProperties.setOnClickListener {
             // Navigate to Landlord Properties Fragment (My Properties)
-             findNavController().navigate(R.id.action_LandlordAddPropertyFragment_to_LandlordPropertiesFragment)
+            findNavController().navigate(R.id.action_LandlordAddPropertyFragment_to_LandlordPropertiesFragment)
         }
     }
 

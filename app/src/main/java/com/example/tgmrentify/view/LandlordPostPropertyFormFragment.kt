@@ -1,10 +1,7 @@
 package com.example.tgmrentify.view
 
 import android.Manifest
-<<<<<<< HEAD
 import android.content.Context
-=======
->>>>>>> 67ce4b75083d97d4749808288c641a5c20adf370
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
@@ -35,7 +32,7 @@ class LandlordPostPropertyFormFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: LandlordViewModel by viewModels()
-    
+
     private var selectedImageUri: Uri? = null
 
     // Launcher for taking a picture (returns a thumbnail Bitmap)
@@ -52,17 +49,6 @@ class LandlordPostPropertyFormFragment : Fragment() {
         if (uri != null) {
             binding.ivPropertyImagePreview.setImageURI(uri)
             selectedImageUri = uri
-        }
-    }
-
-    // Permission Launcher
-    private val requestCameraPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            takePictureLauncher.launch(null)
-        } else {
-            Toast.makeText(requireContext(), "Camera permission is required to take photos.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -117,7 +103,7 @@ class LandlordPostPropertyFormFragment : Fragment() {
             showImageSourceDialog()
         }
     }
-    
+
     private fun observeViewModel() {
         viewModel.isProcessing.observe(viewLifecycleOwner) { isLoading ->
             binding.btnPostProperty.isEnabled = !isLoading
@@ -147,7 +133,7 @@ class LandlordPostPropertyFormFragment : Fragment() {
         val contact = binding.etContactNumber.text.toString().trim()
         val type = binding.spinnerPropertyType.selectedItem.toString()
         val rentAmount = priceStr.toDoubleOrNull() ?: 0.0
-        
+
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         if (currentUserId.isEmpty()) {
             Toast.makeText(context, "User not logged in!", Toast.LENGTH_SHORT).show()
@@ -211,13 +197,8 @@ class LandlordPostPropertyFormFragment : Fragment() {
             .setTitle("Select Image Source")
             .setItems(options) { _, which ->
                 when (which) {
-<<<<<<< HEAD
                     0 -> checkCameraPermissionAndLaunch()
                     1 -> pickImageLauncher.launch("image/*")
-=======
-                    0 -> checkCameraPermissionAndLaunch() // Check permission before launching
-                    1 -> pickImageLauncher.launch("image/*") // Gallery
->>>>>>> 67ce4b75083d97d4749808288c641a5c20adf370
                 }
             }
             .show()
@@ -229,31 +210,18 @@ class LandlordPostPropertyFormFragment : Fragment() {
                 requireContext(),
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED -> {
-<<<<<<< HEAD
                 takePictureLauncher.launch(null)
             }
             shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
-=======
-                // Permission is granted
-                takePictureLauncher.launch(null)
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) -> {
-                // Show an explanation to the user
->>>>>>> 67ce4b75083d97d4749808288c641a5c20adf370
                 Toast.makeText(requireContext(), "Camera permission is needed to take property photos.", Toast.LENGTH_LONG).show()
                 requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
             }
             else -> {
-<<<<<<< HEAD
-=======
-                // Request permission
->>>>>>> 67ce4b75083d97d4749808288c641a5c20adf370
                 requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
             }
         }
     }
-<<<<<<< HEAD
-    
+
     // Helper to get Uri from Bitmap (Not recommended for production high-res, but works for thumbnail fix)
     private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
         val bytes = ByteArrayOutputStream()
@@ -261,8 +229,6 @@ class LandlordPostPropertyFormFragment : Fragment() {
         val path = MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
         return Uri.parse(path)
     }
-=======
->>>>>>> 67ce4b75083d97d4749808288c641a5c20adf370
 
     override fun onDestroyView() {
         super.onDestroyView()

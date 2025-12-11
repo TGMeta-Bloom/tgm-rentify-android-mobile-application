@@ -89,7 +89,7 @@ class LandlordMyPropertiesFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             findNavController().navigateUp()
         }
-        
+
         // Add button listener if you have a FAB or button to add new property
         // binding.btnAddProperty.setOnClickListener { ... }
     }

@@ -24,7 +24,7 @@ class LandlordPostPropertySuccessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         binding.btnBack.setOnClickListener {
             // Navigate to the Add Property screen
             findNavController().navigate(R.id.action_LandlordPostPropertySuccessFragment_to_LandlordAddPropertyFragment)

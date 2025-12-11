@@ -50,17 +50,27 @@ class ChangePasswordActivity : AppCompatActivity() {
 
             if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-            } else if (newPassword != confirmPassword) {
-                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
-            } else {
-                // Mock Save Success
-                Toast.makeText(this, "Password changed successfully! Please login again.", Toast.LENGTH_LONG).show()
-                
-                // Navigate to Login (Simulating logout as per security note)
-                val intent = Intent(this, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
+                return@setOnClickListener
             }
+
+            if (newPassword.length < 6) {
+                Toast.makeText(this, "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (newPassword != confirmPassword) {
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Mock Save Success
+            Toast.makeText(this, "Password changed successfully!", Toast.LENGTH_LONG).show()
+
+            // Navigate to Role Selection Screen
+            val intent = Intent(this, RoleSelectionActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
 
         tvForgot.setOnClickListener {

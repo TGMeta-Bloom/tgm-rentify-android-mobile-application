@@ -75,7 +75,7 @@ class LandlordRepository {
         } else {
             property
         }
-        
+
         propertiesCollection.document(finalProperty.propertyId).set(finalProperty).await()
     }
 
@@ -101,7 +101,7 @@ class LandlordRepository {
         // However, since we might not know all filenames without a list call (which is async),
         // we can try to delete known paths or skip this step if handled by Cloud Functions.
         // For this specific requirement "include logic to delete images":
-        
+
         try {
             val storageRef = storage.reference.child("property_images/$landlordId/$propertyId")
             val listResult = storageRef.listAll().await()
@@ -120,10 +120,10 @@ class LandlordRepository {
     suspend fun uploadPropertyImage(uri: Uri, propertyId: String): String {
         val landlordId = currentUserId ?: throw Exception("User not logged in")
         val uniqueFilename = UUID.randomUUID().toString() + ".jpg"
-        
+
         // Path: property_images/{landlordId}/{propertyId}/{unique_filename}.jpg
         val ref = storage.reference.child("property_images/$landlordId/$propertyId/$uniqueFilename")
-        
+
         ref.putFile(uri).await()
         return ref.downloadUrl.await().toString()
     }
