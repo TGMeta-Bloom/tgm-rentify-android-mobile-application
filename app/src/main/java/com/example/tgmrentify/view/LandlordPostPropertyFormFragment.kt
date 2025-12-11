@@ -28,6 +28,7 @@ import java.util.UUID
 
 class LandlordPostPropertyFormFragment : Fragment() {
 
+
     private var _binding: FragmentLandlordPostPropertyFormBinding? = null
     private val binding get() = _binding!!
 

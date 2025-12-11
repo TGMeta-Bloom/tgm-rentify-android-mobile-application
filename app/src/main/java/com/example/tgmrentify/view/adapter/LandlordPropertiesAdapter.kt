@@ -21,6 +21,7 @@ class LandlordPropertiesAdapter(
         notifyDataSetChanged()
     }
 
+
     inner class PropertyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivPropertyImage: ImageView = itemView.findViewById(R.id.iv_property_image)
         val tvTitle: TextView = itemView.findViewById(R.id.tv_property_title)

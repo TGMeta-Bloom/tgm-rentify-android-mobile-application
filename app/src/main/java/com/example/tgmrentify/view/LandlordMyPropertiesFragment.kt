@@ -17,6 +17,7 @@ import com.example.tgmrentify.viewModel.LandlordViewModel
 
 class LandlordMyPropertiesFragment : Fragment() {
 
+
     private var _binding: FragmentLandlordMyPropertiesBinding? = null
     private val binding get() = _binding!!
 

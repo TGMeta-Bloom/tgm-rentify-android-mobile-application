@@ -39,6 +39,7 @@ class PropertyTypeAdapter(
         }
     }
 
+
     class TypeDiffCallback : DiffUtil.ItemCallback<PropertyType>() {
         override fun areItemsTheSame(oldItem: PropertyType, newItem: PropertyType): Boolean {
             return oldItem.name == newItem.name

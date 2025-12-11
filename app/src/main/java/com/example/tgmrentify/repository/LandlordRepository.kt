@@ -117,6 +117,7 @@ class LandlordRepository {
     /**
      * Upload an image to Firebase Storage and return the download URL
      */
+
     suspend fun uploadPropertyImage(uri: Uri, propertyId: String): String {
         val landlordId = currentUserId ?: throw Exception("User not logged in")
         val uniqueFilename = UUID.randomUUID().toString() + ".jpg"
