@@ -6,8 +6,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Property(
     val propertyId: String,
-
-
     val landlordId: String,
     val title: String,
     val description: String = "A beautiful place to live with modern amenities.", // Default description
