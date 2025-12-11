@@ -3,8 +3,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    // Add Google Services plugin
+    // Add Google Services plugin (from HEAD)
     alias(libs.plugins.google.services)
+    // Add Parcelize plugin (from development, converted to alias)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {

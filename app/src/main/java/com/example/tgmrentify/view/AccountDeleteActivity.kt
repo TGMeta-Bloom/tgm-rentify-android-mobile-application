@@ -37,8 +37,8 @@ class AccountDeleteActivity : AppCompatActivity() {
                 // Mock Deletion Success
                 Toast.makeText(this, "Account deleted successfully.", Toast.LENGTH_LONG).show()
                 
-                // Navigate to Login or Onboarding
-                val intent = Intent(this, LoginActivity::class.java)
+                // Navigate to Role Selection (as requested)
+                val intent = Intent(this, RoleSelectionActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
             }

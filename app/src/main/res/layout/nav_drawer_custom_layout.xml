@@ -6,6 +6,7 @@
     android:id="@+id/nav_view_custom"
     android:layout_width="300dp"
     android:layout_height="match_parent"
+    android:minHeight="1000dp"
     android:layout_gravity="start"
     android:orientation="vertical"
     android:background="@color/app_blue"
@@ -61,15 +62,15 @@
         android:focusable="true"
         android:gravity="center_vertical"
         android:background="@drawable/nav_item_selected_background">
-        
+
         <ImageView
             android:id="@+id/nav_profile_info_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_profile" 
+            android:src="@drawable/ic_profile"
             android:duplicateParentState="true"
             app:tint="@color/nav_item_color_selector"/>
-            
+
         <TextView
             android:id="@+id/nav_profile_info_text"
             android:layout_width="wrap_content"
@@ -91,15 +92,15 @@
         android:focusable="true"
         android:gravity="center_vertical"
         android:background="@drawable/nav_item_selected_background">
-        
+
         <ImageView
             android:id="@+id/nav_privacy_security_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_lock" 
+            android:src="@drawable/ic_lock"
             android:duplicateParentState="true"
             app:tint="@color/nav_item_color_selector"/>
-            
+
         <TextView
             android:id="@+id/nav_privacy_security_text"
             android:layout_width="wrap_content"
@@ -121,15 +122,15 @@
         android:focusable="true"
         android:gravity="center_vertical"
         android:background="@drawable/nav_item_selected_background">
-        
+
         <ImageView
             android:id="@+id/nav_account_delete_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@android:drawable/ic_menu_delete" 
+            android:src="@android:drawable/ic_menu_delete"
             android:duplicateParentState="true"
             app:tint="@color/nav_item_color_selector"/>
-            
+
         <TextView
             android:id="@+id/nav_account_delete_text"
             android:layout_width="wrap_content"
@@ -151,15 +152,15 @@
         android:focusable="true"
         android:gravity="center_vertical"
         android:background="@drawable/nav_item_selected_background">
-        
+
         <ImageView
             android:id="@+id/nav_app_settings_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@android:drawable/ic_menu_preferences" 
+            android:src="@android:drawable/ic_menu_preferences"
             android:duplicateParentState="true"
             app:tint="@color/nav_item_color_selector"/>
-            
+
         <TextView
             android:id="@+id/nav_app_settings_text"
             android:layout_width="wrap_content"
@@ -171,16 +172,12 @@
             android:textSize="16sp"/>
     </LinearLayout>
 
-    <!-- Spacer to push Logout to bottom -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
+    <!-- Removed Spacer to prevent hidden button -->
+    
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="48dp"
         android:layout_marginBottom="8dp"
         android:background="@color/white"
         android:alpha="0.3"/>
