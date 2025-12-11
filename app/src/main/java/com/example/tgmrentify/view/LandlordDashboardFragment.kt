@@ -124,3 +124,4 @@ class LandlordDashboardFragment : Fragment() {
         _binding = null
     }
 }
+
