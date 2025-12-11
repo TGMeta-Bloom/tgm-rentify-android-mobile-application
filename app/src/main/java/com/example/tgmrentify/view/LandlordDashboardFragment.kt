@@ -95,6 +95,7 @@ class LandlordDashboardFragment : Fragment() {
     }
 
 
+
     private fun handleTypeFilter(selectedType: PropertyType) {
         val updatedList = propertyTypes.map {
             it.copy(isSelected = it.name == selectedType.name)

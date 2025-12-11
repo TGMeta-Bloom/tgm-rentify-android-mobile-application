@@ -12,7 +12,6 @@ data class Property(
     val location: String,
     val rentAmount: Double,
     val propertyType: String = "Apartment", // Default type
-
     val status: String = "Available", // Default status
     val contactNumber: String = "077-1234567", // Default contact
     val imageUrls: List<String>
