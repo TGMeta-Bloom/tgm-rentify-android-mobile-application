@@ -1,0 +1,216 @@
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <color name=\"black\">#FF000000</color>\r\n    <color name=\"white\">#FFFFFFFF</color>\r\n    <color name=\"gray\">#474747</color>\r\n    <color name=\"silk_blue\">#026EA3</color>\r\n    <color name=\"royal_blue\">#0F1986</color>\r\n    <color name=\"dark_blue\">#0D0D3A</color>\r\n    <color name=\"sky_blue\">#039BE5</color>\r\n    <color name=\"bright_yellow\">#FFCC3E</color>\r\n    <color name=\"window_background_light_blue\">#E7E7FB</color>\r\n    <color name=\"app_blue\">#56BCEE</color>\r\n    <color name=\"app_navbar_blue\">#0D0D3A</color>\r\n    <color name=\"app_text_gray\">#808080</color>\r\n    <color name=\"app_divider_gray\">#BDBDBD</color>\r\n    <color name=\"tgm_dark_blue\">#0D0D60</color>\r\n    <color name=\"rentify_teal\">#007FA3</color>\r\n    <color name=\"rentify_yellow\">#FFFFFF33</color>\r\n\r\n\r\n    <color name=\"grey_700\">#616161</color>\r\n    <color name=\"colorPrimary\">#1A237E</color>\r\n    <color name=\"grey_400\">#BDBDBD</color>\r\n    <color name=\"colorPrimaryDark\">#141B65</color>\r\n    <color name=\"gold_accent\">#FFD700</color>\r\n    <color name=\"colorAccent\">#FFC107</color>\r\n    <color name=\"accent_400\">#FFA000</color>\r\n    <color name=\"light_yellow_input\">#FFF9C4</color>\r\n    <color name=\"primary_200\">#90CAF9</color>\r\n    <color name=\"grey_200\">#EEEEEE</color>\r\n    <color name=\"red\">#EF5350</color> <!-- Softer Red -->\r\n    <color name=\"dark_red\">#00780303</color>\r\n\r\n\r\n        <!--  Landlord Dashboard Colors  -->\r\n        <color name=\"landlord_banner_bg\">#014160</color>\r\n        <color name=\"landlord_nav_background\">#0D1B2A</color>\r\n        <color name=\"landlord_subtitle_text\">#B0BEC5</color>\r\n        <color name=\"landlord_filter_selected_bg\">#8BD1F3</color>\r\n        <color name=\"landlord_filter_unselected_bg\">#E6F5FC</color>\r\n        <color name=\"landlord_button_bg\">#014160</color>\r\n        <color name=\"landlord_plus_icon_tint\">#02557E</color>\r\n        <color name=\"landlord_text_stroke_color\">#87A3B0</color>\r\n        <!--    <color name=\"text_color_filter_selector\">#000000</color>-->\r\n        <!--  Placeholder, will replace with selector  -->\r\n        <!--  Dashboard Specific Colors  -->\r\n        <color name=\"banner_background\">#004D40</color>\r\n        <!--  Dark Teal for the banner  -->\r\n        <color name=\"filter_selected_bg\">#B3E5FC</color>\r\n        <!--  Light Blue for selected chip  -->\r\n        <color name=\"filter_selected_text\">#01579B</color>\r\n        <!--  Darker Blue for selected text  -->\r\n        <color name=\"filter_unselected_bg\">#F5F5F5</color>\r\n        <color name=\"filter_unselected_text\">#424242</color>\r\n        <!--  Figma Login Screen Colors  -->\r\n        <color name=\"light_yellow_bg\">#FFF9E6</color>\r\n\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision 38df147e119ef9a913c8e094b654f01edd10003f)
++++ b/app/src/main/res/values/colors.xml	(date 1765374023197)
+@@ -15,7 +15,6 @@
+     <color name="app_divider_gray">#BDBDBD</color>
+     <color name="tgm_dark_blue">#0D0D60</color>
+     <color name="rentify_teal">#007FA3</color>
+-    <color name="rentify_yellow">#FFFFFF33</color>
+ 
+ 
+     <color name="grey_700">#616161</color>
+@@ -23,37 +22,7 @@
+     <color name="grey_400">#BDBDBD</color>
+     <color name="colorPrimaryDark">#141B65</color>
+     <color name="gold_accent">#FFD700</color>
+-    <color name="colorAccent">#FFC107</color>
+-    <color name="accent_400">#FFA000</color>
+-    <color name="light_yellow_input">#FFF9C4</color>
+-    <color name="primary_200">#90CAF9</color>
+-    <color name="grey_200">#EEEEEE</color>
+-    <color name="red">#EF5350</color> <!-- Softer Red -->
+-    <color name="dark_red">#00780303</color>
+-
+-
+-        <!--  Landlord Dashboard Colors  -->
+-        <color name="landlord_banner_bg">#014160</color>
+-        <color name="landlord_nav_background">#0D1B2A</color>
+-        <color name="landlord_subtitle_text">#B0BEC5</color>
+-        <color name="landlord_filter_selected_bg">#8BD1F3</color>
+-        <color name="landlord_filter_unselected_bg">#E6F5FC</color>
+-        <color name="landlord_button_bg">#014160</color>
+-        <color name="landlord_plus_icon_tint">#02557E</color>
+-        <color name="landlord_text_stroke_color">#87A3B0</color>
+-        <!--    <color name="text_color_filter_selector">#000000</color>-->
+-        <!--  Placeholder, will replace with selector  -->
+-        <!--  Dashboard Specific Colors  -->
+-        <color name="banner_background">#004D40</color>
+-        <!--  Dark Teal for the banner  -->
+-        <color name="filter_selected_bg">#B3E5FC</color>
+-        <!--  Light Blue for selected chip  -->
+-        <color name="filter_selected_text">#01579B</color>
+-        <!--  Darker Blue for selected text  -->
+-        <color name="filter_unselected_bg">#F5F5F5</color>
+-        <color name="filter_unselected_text">#424242</color>
+-        <!--  Figma Login Screen Colors  -->
+-        <color name="light_yellow_bg">#FFF9E6</color>
+-
++    <color name="colorAccent">#FFC107</color> <color name="accent_400">#FFA000</color>
++    <color name="light_yellow_input">#FFF9C4</color> <color name="primary_200">#90CAF9</color>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">TGMRentify</string>\r\n\r\n    <string name=\"bottom_nav_home\">Home</string>\r\n    <string name=\"bottom_nav_dashboard\">Dashboard</string>\r\n    <string name=\"bottom_nav_profile\">Profile</string>\r\n\r\n    <string name=\"price_format\">Rs. %s</string>\r\n    <string name=\"btn_ok\">OK</string>\r\n    <string name=\"btn_cancel\">Cancel</string>\r\n\r\n    <string name=\"onboarding_image_desc\">Illustration related to property search.</string>\r\n    <string name=\"background_image_desc\">Blurred image background for role selection.</string>\r\n\r\n    <string name=\"text_hello\">Hello</string>\r\n    <string name=\"text_wave\">\uD83D\uDC4B</string>\r\n    <string name=\"text_landlord\">Landlord</string>\r\n    <string name=\"text_post_property_now\">Post your property Now!</string>\r\n    <string name=\"text_see_posted_properties\">See your posted Properties!</string>\r\n\r\n    <string name=\"text_add_property_here\">You can Add your Property Here...</string>\r\n    <string name=\"text_property_title\">Property Title :</string>\r\n    <string name=\"hint_property_title\">Cozy Apartment in Colombo 7</string>\r\n    <string name=\"text_property_description\">Description of your property :</string>\r\n    <string name=\"hint_property_description\">3 - bedroom apartment with sea view and rooftop gym.</string>\r\n    <string name=\"text_property_district\">District of your property :</string>\r\n    <string name=\"hint_property_district\">Colombo</string>\r\n    <string name=\"text_price\">Price :</string>\r\n    <string name=\"hint_price\">Rs. 1700000</string>\r\n    <string name=\"text_property_type\">Property Type :</string>\r\n    <string name=\"text_add_property_image\">Add your Property Image:</string>\r\n    <string name=\"text_contact_number\">Contact Number:</string>\r\n    <string name=\"hint_contact_number\">077-3344556</string>\r\n    <string name=\"text_post_property_btn\">Post Property</string>\r\n\r\n    <string name=\"text_edit_property_here\">You can Edit your Property Here...</string>\r\n    <string name=\"text_current_image\">Current Image:</string>\r\n    <string name=\"text_change_image\">Change Image:</string>\r\n    <string name=\"text_availability\">Availability:</string>\r\n    <string name=\"text_edit_property_btn\">Edit Property</string>\r\n\r\n    <string name=\"btn_edit\">Edit</string>\r\n    <string name=\"btn_delete\">Delete</string>\r\n\r\n    <string name=\"text_property_posted_success\">Property Posted Successfully!</string>\r\n    <string name=\"text_property_deleted_success\">Property Deleted Successfully!</string>\r\n    <string name=\"text_delete_confirm_message\">Are you sure you want to delete this property?</string>\r\n    <string name=\"text_property_edited_success\">Property Edited Successfully!</string>\r\n\r\n    <string name=\"content_desc_tgm_logo\">TGM Logo</string>\r\n    <string name=\"content_desc_tgm_text\">TGM Rentify Text</string>\r\n    <string name=\"content_desc_back_button\">Back</string>\r\n    <string name=\"content_desc_profile_image\">Profile Image</string>\r\n    <string name=\"content_desc_post_property\">Post Property</string>\r\n    <string name=\"content_desc_view_properties\">View Properties</string>\r\n    <string name=\"content_desc_property_preview\">Property Image Preview</string>\r\n    <string name=\"content_desc_add_image\">Add Image Button</string>\r\n    <string name=\"content_desc_success_illustration\">Success Illustration</string>\r\n    <string name=\"content_desc_delete_illustration\">Delete Confirmation Illustration</string>\r\n    <string name=\"content_desc_property_image\">Property Main Image</string>\r\n    <string name=\"content_desc_location_icon\">Location Icon</string>\r\n    <string name=\"content_desc_type_icon\">Property Type Icon</string>\r\n    <string name=\"content_desc_status_icon\">Availability Status Icon</string>\r\n    <string name=\"content_desc_phone_icon\">Contact Phone Icon</string>\r\n    <string name=\"content_desc_save_button\">Save Property Button</string>\r\n    <string name=\"content_desc_current_image\">Current Property Image</string>\r\n    <string name=\"content_desc_new_image_preview\">New Property Image Preview</string>\r\n    <string name=\"content_desc_change_image_btn\">Change Image Button</string>\r\n\r\n    <string name=\"add_post_title\">Add New Post</string>\r\n    <string name=\"add_post_add_picture\">Add Picture</string>\r\n    <string name=\"add_post_caption_hint\">Add a Post / Ask a Question</string>\r\n    <string name=\"add_post_post_now\">Post Now</string>\r\n\r\n    <string name=\"city_area\">Select City</string>\r\n    <string-array name=\"city_array\">\r\n        <item>Colombo</item>\r\n        <item>Kandy</item>\r\n        <item>Galle</item>\r\n        <item>Jaffna</item>\r\n        <item>Matara</item>\r\n    </string-array>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 38df147e119ef9a913c8e094b654f01edd10003f)
++++ b/app/src/main/res/values/strings.xml	(date 1765374867992)
+@@ -1,23 +1,18 @@
+ <resources>
+     <string name="app_name">TGMRentify</string>
+-
+     <string name="bottom_nav_home">Home</string>
+     <string name="bottom_nav_dashboard">Dashboard</string>
+     <string name="bottom_nav_profile">Profile</string>
+-
+     <string name="price_format">Rs. %s</string>
+     <string name="btn_ok">OK</string>
+     <string name="btn_cancel">Cancel</string>
+-
+     <string name="onboarding_image_desc">Illustration related to property search.</string>
+     <string name="background_image_desc">Blurred image background for role selection.</string>
+-
+     <string name="text_hello">Hello</string>
+     <string name="text_wave">👋</string>
+     <string name="text_landlord">Landlord</string>
+     <string name="text_post_property_now">Post your property Now!</string>
+     <string name="text_see_posted_properties">See your posted Properties!</string>
+-
+     <string name="text_add_property_here">You can Add your Property Here...</string>
+     <string name="text_property_title">Property Title :</string>
+     <string name="hint_property_title">Cozy Apartment in Colombo 7</string>
+@@ -32,21 +27,17 @@
+     <string name="text_contact_number">Contact Number:</string>
+     <string name="hint_contact_number">077-3344556</string>
+     <string name="text_post_property_btn">Post Property</string>
+-
+     <string name="text_edit_property_here">You can Edit your Property Here...</string>
+     <string name="text_current_image">Current Image:</string>
+     <string name="text_change_image">Change Image:</string>
+     <string name="text_availability">Availability:</string>
+     <string name="text_edit_property_btn">Edit Property</string>
+-
+     <string name="btn_edit">Edit</string>
+     <string name="btn_delete">Delete</string>
+-
+     <string name="text_property_posted_success">Property Posted Successfully!</string>
+     <string name="text_property_deleted_success">Property Deleted Successfully!</string>
+     <string name="text_delete_confirm_message">Are you sure you want to delete this property?</string>
+     <string name="text_property_edited_success">Property Edited Successfully!</string>
+-
+     <string name="content_desc_tgm_logo">TGM Logo</string>
+     <string name="content_desc_tgm_text">TGM Rentify Text</string>
+     <string name="content_desc_back_button">Back</string>
+@@ -66,12 +57,10 @@
+     <string name="content_desc_current_image">Current Property Image</string>
+     <string name="content_desc_new_image_preview">New Property Image Preview</string>
+     <string name="content_desc_change_image_btn">Change Image Button</string>
+-
+     <string name="add_post_title">Add New Post</string>
+     <string name="add_post_add_picture">Add Picture</string>
+     <string name="add_post_caption_hint">Add a Post / Ask a Question</string>
+     <string name="add_post_post_now">Post Now</string>
+-
+     <string name="city_area">Select City</string>
+     <string-array name="city_array">
+         <item>Colombo</item>
+Index: app/src/main/java/com/example/tgmrentify/view/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tgmrentify.view\r\n\r\nimport android.content.Context\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.widget.Button\r\nimport android.widget.ImageButton\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.example.tgmrentify.MainActivity\r\nimport com.example.tgmrentify.R\r\nimport com.google.android.material.textfield.TextInputEditText\r\n\r\nclass LoginActivity : AppCompatActivity() {\r\n\r\n    private var userRole: String? = null\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_login)\r\n\r\n        userRole = intent.getStringExtra(\"selected_role\")\r\n\r\n        val etEmail = findViewById<TextInputEditText>(R.id.input_email)\r\n        val etPassword = findViewById<TextInputEditText>(R.id.input_password)\r\n        val btnLogin = findViewById<Button>(R.id.btn_login)\r\n        val tvRegister = findViewById<TextView>(R.id.text_create_one)\r\n        val btnBack = findViewById<ImageButton>(R.id.btn_back)\r\n        val tvForgotPassword = findViewById<TextView>(R.id.text_forgot_password)\r\n\r\n        btnBack.setOnClickListener {\r\n            finish() // Goes back to the previous screen\r\n        }\r\n\r\n        btnLogin.setOnClickListener {\r\n            val email = etEmail.text.toString()\r\n            val password = etPassword.text.toString()\r\n            \r\n            if (email.isEmpty() || password.isEmpty()) {\r\n                Toast.makeText(this, \"Please fill in all fields\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n            \r\n            // TODO: Implement login logic with Firebase Auth\r\n            Toast.makeText(this, \"Login Successful\", Toast.LENGTH_SHORT).show()\r\n\r\n            // Save role to SharedPreferences\r\n            val sharedPref = getSharedPreferences(\"AppPrefs\", Context.MODE_PRIVATE)\r\n            with(sharedPref.edit()) {\r\n                putString(\"user_role\", userRole)\r\n                apply()\r\n            }\r\n\r\n            // Redirect to MainActivity\r\n            val intent = Intent(this, MainActivity::class.java)\r\n            // Clear the back stack so the user can't go back to login\r\n            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n\r\n        tvRegister.setOnClickListener {\r\n            val intent = Intent(this, RegisterActivity::class.java).apply {\r\n                putExtra(\"selected_role\", userRole)\r\n            }\r\n            startActivity(intent)\r\n        }\r\n\r\n        tvForgotPassword.setOnClickListener {\r\n            val intent = Intent(this, ForgotPasswordRequestActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/tgmrentify/view/LoginActivity.kt b/app/src/main/java/com/example/tgmrentify/view/LoginActivity.kt
+--- a/app/src/main/java/com/example/tgmrentify/view/LoginActivity.kt	(revision 38df147e119ef9a913c8e094b654f01edd10003f)
++++ b/app/src/main/java/com/example/tgmrentify/view/LoginActivity.kt	(date 1765372877254)
+@@ -34,13 +34,18 @@
+         }
+ 
+         btnLogin.setOnClickListener {
+-            val email = etEmail.text.toString()
++            val email = etEmail.text.toString().trim()
+             val password = etPassword.text.toString()
+             
+             if (email.isEmpty() || password.isEmpty()) {
+                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                 return@setOnClickListener
+             }
++
++            if (!email.endsWith("@gmail.com")) {
++                Toast.makeText(this, "Email must be a @gmail.com address", Toast.LENGTH_SHORT).show()
++                return@setOnClickListener
++            }
+             
+             // TODO: Implement login logic with Firebase Auth
+             Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
+Index: app/src/main/java/com/example/tgmrentify/view/RegisterActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tgmrentify.view\r\n\r\nimport android.Manifest\r\nimport android.content.Intent\r\nimport android.content.pm.PackageManager\r\nimport android.net.Uri\r\nimport android.os.Bundle\r\nimport android.provider.MediaStore\r\nimport android.widget.ArrayAdapter\r\nimport android.widget.AutoCompleteTextView\r\nimport android.widget.Button\r\nimport android.widget.EditText\r\nimport android.widget.ImageButton\r\nimport android.widget.Toast\r\nimport androidx.activity.result.contract.ActivityResultContracts\r\nimport androidx.appcompat.app.AlertDialog\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.core.content.ContextCompat\r\nimport androidx.core.content.FileProvider\r\nimport com.bumptech.glide.Glide\r\nimport com.example.tgmrentify.R\r\nimport de.hdodenhof.circleimageview.CircleImageView\r\nimport java.io.File\r\n\r\nclass RegisterActivity : AppCompatActivity() {\r\n\r\n    private var userRole: String? = null\r\n    private var imageUri: Uri? = null\r\n    private lateinit var profileImageView: CircleImageView\r\n\r\n    private val takePicture = registerForActivityResult(ActivityResultContracts.TakePicture()) { success: Boolean ->\r\n        if (success) {\r\n            imageUri?.let {\r\n                Glide.with(this).load(it).into(profileImageView)\r\n            }\r\n        }\r\n    }\r\n\r\n    private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->\r\n        uri?.let {\r\n            imageUri = it\r\n            Glide.with(this).load(it).into(profileImageView)\r\n        }\r\n    }\r\n\r\n    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->\r\n        if (isGranted) {\r\n            openCamera()\r\n        } else {\r\n            Toast.makeText(this, \"Camera permission is required to take a picture\", Toast.LENGTH_SHORT).show()\r\n        }\r\n    }\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_register)\r\n\r\n        userRole = intent.getStringExtra(\"selected_role\")\r\n\r\n        profileImageView = findViewById(R.id.image_profile)\r\n        val etEmail = findViewById<EditText>(R.id.input_email_register)\r\n        val etPassword = findViewById<EditText>(R.id.input_password_register)\r\n        val etConfirmPassword = findViewById<EditText>(R.id.input_confirm_password)\r\n        val btnRegister = findViewById<Button>(R.id.btn_register)\r\n        val btnCamera = findViewById<ImageButton>(R.id.btn_camera)\r\n\r\n        // Set up the city dropdown\r\n        val cities = resources.getStringArray(R.array.city_array)\r\n        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, cities)\r\n        val cityDropdown = findViewById<AutoCompleteTextView>(R.id.autocomplete_city)\r\n        cityDropdown.setAdapter(adapter)\r\n\r\n        btnCamera.setOnClickListener {\r\n            showImageSourceDialog()\r\n        }\r\n\r\n        btnRegister.setOnClickListener {\r\n            val email = etEmail.text.toString()\r\n            val password = etPassword.text.toString()\r\n            val confirmPassword = etConfirmPassword.text.toString()\r\n            val selectedCity = cityDropdown.text.toString()\r\n\r\n            if (password != confirmPassword) {\r\n                Toast.makeText(this, \"Passwords do not match\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            if (selectedCity.isEmpty() || selectedCity == getString(R.string.city_area)) {\r\n                Toast.makeText(this, \"Please select a city\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            if (imageUri == null) {\r\n                Toast.makeText(this, \"Please select a profile picture\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // TODO: Implement registration logic with Firebase Auth & Storage\r\n        }\r\n    }\r\n\r\n    private fun showImageSourceDialog() {\r\n        val options = arrayOf(\"Take Photo\", \"Choose from Gallery\")\r\n        AlertDialog.Builder(this)\r\n            .setTitle(\"Select Profile Picture\")\r\n            .setItems(options) { _, which ->\r\n                when (which) {\r\n                    0 -> checkCameraPermissionAndOpenCamera()\r\n                    1 -> pickImage.launch(\"image/*\")\r\n                }\r\n            }\r\n            .show()\r\n    }\r\n\r\n    private fun checkCameraPermissionAndOpenCamera() {\r\n        when {\r\n            ContextCompat.checkSelfPermission(\r\n                this,\r\n                Manifest.permission.CAMERA\r\n            ) == PackageManager.PERMISSION_GRANTED -> {\r\n                openCamera()\r\n            }\r\n            else -> {\r\n                requestPermissionLauncher.launch(Manifest.permission.CAMERA)\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun openCamera() {\r\n        val photoFile = File.createTempFile(\r\n            \"JPEG_${System.currentTimeMillis()}_\",\r\n            \".jpg\",\r\n            getExternalFilesDir(null)\r\n        )\r\n        val newImageUri = FileProvider.getUriForFile(\r\n            this,\r\n            \"${applicationContext.packageName}.provider\",\r\n            photoFile\r\n        )\r\n        imageUri = newImageUri\r\n        takePicture.launch(newImageUri)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/tgmrentify/view/RegisterActivity.kt b/app/src/main/java/com/example/tgmrentify/view/RegisterActivity.kt
+--- a/app/src/main/java/com/example/tgmrentify/view/RegisterActivity.kt	(revision 38df147e119ef9a913c8e094b654f01edd10003f)
++++ b/app/src/main/java/com/example/tgmrentify/view/RegisterActivity.kt	(date 1765374023350)
+@@ -75,11 +75,26 @@
+         }
+ 
+         btnRegister.setOnClickListener {
+-            val email = etEmail.text.toString()
++            val email = etEmail.text.toString().trim()
+             val password = etPassword.text.toString()
+             val confirmPassword = etConfirmPassword.text.toString()
+             val selectedCity = cityDropdown.text.toString()
+ 
++            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
++                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
++                return@setOnClickListener
++            }
++
++            if (!email.endsWith("@gmail.com")) {
++                Toast.makeText(this, "Email must be a @gmail.com address", Toast.LENGTH_SHORT).show()
++                return@setOnClickListener
++            }
++
++            if (password.length < 6) {
++                Toast.makeText(this, "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show()
++                return@setOnClickListener
++            }
++
+             if (password != confirmPassword) {
+                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                 return@setOnClickListener
+Index: app/src/main/java/com/example/tgmrentify/view/ForgotPasswordResetActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.tgmrentify.view\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.widget.Button\r\nimport android.widget.ImageView\r\nimport android.widget.TextView\r\nimport android.widget.Toast\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.example.tgmrentify.R\r\nimport com.google.android.material.textfield.TextInputEditText\r\n\r\nclass ForgotPasswordResetActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_forgot_password_reset)\r\n\r\n        val etNewPassword = findViewById<TextInputEditText>(R.id.input_new_password)\r\n        val etRepeatPassword = findViewById<TextInputEditText>(R.id.input_repeat_password)\r\n        val btnSave = findViewById<Button>(R.id.btn_save)\r\n        val tvBackToLogin = findViewById<TextView>(R.id.tv_back_to_login)\r\n        val btnHeaderBack = findViewById<ImageView>(R.id.btn_header_back)\r\n\r\n        btnSave.setOnClickListener {\r\n            val newPassword = etNewPassword.text.toString()\r\n            val repeatPassword = etRepeatPassword.text.toString()\r\n\r\n            if (newPassword.isEmpty() || repeatPassword.isEmpty()) {\r\n                Toast.makeText(this, \"Please fill in all fields\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            if (newPassword != repeatPassword) {\r\n                Toast.makeText(this, \"Passwords do not match\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            // Navigate to Success Screen\r\n            val intent = Intent(this, ForgotPasswordSuccessActivity::class.java)\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n        \r\n        tvBackToLogin.setOnClickListener {\r\n            // Navigate back to Login\r\n            val intent = Intent(this, LoginActivity::class.java)\r\n            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n\r\n\r\n        btnHeaderBack.setOnClickListener {\r\n             // Typically navigating back from Reset would go to Login or close the \"link\" flow\r\n            val intent = Intent(this, LoginActivity::class.java)\r\n            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/tgmrentify/view/ForgotPasswordResetActivity.kt b/app/src/main/java/com/example/tgmrentify/view/ForgotPasswordResetActivity.kt
+--- a/app/src/main/java/com/example/tgmrentify/view/ForgotPasswordResetActivity.kt	(revision 38df147e119ef9a913c8e094b654f01edd10003f)
++++ b/app/src/main/java/com/example/tgmrentify/view/ForgotPasswordResetActivity.kt	(date 1765374034546)
+@@ -48,8 +48,7 @@
+             startActivity(intent)
+             finish()
+         }
+-
+-
++        
+         btnHeaderBack.setOnClickListener {
+              // Typically navigating back from Reset would go to Login or close the "link" flow
+             val intent = Intent(this, LoginActivity::class.java)
