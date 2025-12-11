@@ -10,6 +10,13 @@ class SharedPreferencesHelper(context: Context) {
     companion object {
         private const val PREFS_NAME = "com.example.tgmrentify.prefs"
         private const val KEY_ONBOARDING_COMPLETED = "onboarding_completed"
+        
+        // Backend / Session Keys
+        private const val KEY_AUTH_TOKEN = "auth_token"
+        private const val KEY_USER_ROLE = "user_role"
+        private const val KEY_USER_ID = "user_id"
+        private const val KEY_USER_EMAIL = "user_email"
+        private const val KEY_USER_NAME = "user_name"
     }
 
     /**
@@ -28,8 +35,103 @@ class SharedPreferencesHelper(context: Context) {
         return sharedPreferences.getBoolean(KEY_ONBOARDING_COMPLETED, false)
     }
 
+    // ----------------------------------------------------------------
+    // Backend / Session Management Methods
+    // ----------------------------------------------------------------
+
     /**
-     * Clears all data from the shared preferences.
+     * Saves the Authentication Token (JWT).
+     */
+    fun saveAuthToken(token: String) {
+        sharedPreferences.edit().putString(KEY_AUTH_TOKEN, token).apply()
+    }
+
+    /**
+     * Retrieves the Authentication Token.
+     */
+    fun getAuthToken(): String? {
+        return sharedPreferences.getString(KEY_AUTH_TOKEN, null)
+    }
+
+    /**
+     * Saves the User Role (e.g., "Landlord", "Tenant").
+     */
+    fun saveUserRole(role: String) {
+        sharedPreferences.edit().putString(KEY_USER_ROLE, role).apply()
+    }
+
+    /**
+     * Retrieves the User Role.
+     */
+    fun getUserRole(): String? {
+        return sharedPreferences.getString(KEY_USER_ROLE, null)
+    }
+
+    /**
+     * Saves the User ID.
+     */
+    fun saveUserId(userId: String) {
+        sharedPreferences.edit().putString(KEY_USER_ID, userId).apply()
+    }
+
+    /**
+     * Retrieves the User ID.
+     */
+    fun getUserId(): String? {
+        return sharedPreferences.getString(KEY_USER_ID, null)
+    }
+
+    /**
+     * Saves the User Email.
+     */
+    fun saveUserEmail(email: String) {
+        sharedPreferences.edit().putString(KEY_USER_EMAIL, email).apply()
+    }
+
+    /**
+     * Retrieves the User Email.
+     */
+    fun getUserEmail(): String? {
+        return sharedPreferences.getString(KEY_USER_EMAIL, null)
+    }
+
+    /**
+     * Saves the User Name.
+     */
+    fun saveUserName(name: String) {
+        sharedPreferences.edit().putString(KEY_USER_NAME, name).apply()
+    }
+
+    /**
+     * Retrieves the User Name.
+     */
+    fun getUserName(): String? {
+        return sharedPreferences.getString(KEY_USER_NAME, null)
+    }
+
+    /**
+     * Checks if the user is currently logged in (i.e., has a token).
+     */
+    fun isLoggedIn(): Boolean {
+        return getAuthToken() != null
+    }
+
+    /**
+     * Clears session data (Logout) but keeps Onboarding status.
+     */
+    fun clearSession() {
+        sharedPreferences.edit()
+            .remove(KEY_AUTH_TOKEN)
+            .remove(KEY_USER_ROLE)
+            .remove(KEY_USER_ID)
+            .remove(KEY_USER_EMAIL)
+            .remove(KEY_USER_NAME)
+            .apply()
+    }
+
+    /**
+     * Clears all data from the shared preferences (including onboarding).
+     * Use this with caution (e.g., App Reset).
      */
     fun clear() {
         sharedPreferences.edit().clear().apply()

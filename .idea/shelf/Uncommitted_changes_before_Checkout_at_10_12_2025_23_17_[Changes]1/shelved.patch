@@ -1,0 +1,44 @@
+Index: app/src/main/java/com/example/tgmrentify/model/Property.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/tgmrentify/model/Property.kt b/app/src/main/java/com/example/tgmrentify/model/Property.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/tgmrentify/model/Property.kt	(revision de3cd25764d00457711480c7448ff345a38f5bca)
++++ /dev/null	(revision de3cd25764d00457711480c7448ff345a38f5bca)
+@@ -1,18 +0,0 @@
+-package com.example.tgmrentify.model
+-
+-import android.os.Parcelable
+-import kotlinx.parcelize.Parcelize
+-
+-@Parcelize
+-data class Property(
+-    val propertyId: String,
+-    val landlordId: String,
+-    val title: String,
+-    val description: String = "A beautiful place to live with modern amenities.", // Default description
+-    val location: String,
+-    val rentAmount: Double,
+-    val propertyType: String = "Apartment", // Default type
+-    val status: String = "Available", // Default status
+-    val contactNumber: String = "077-1234567", // Default contact
+-    val imageUrls: List<String>
+-) : Parcelable
+\ No newline at end of file
+Index: app/src/main/java/com/example/tgmrentify/view/LandlordDashboardFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@file:Suppress(\"SpellCheckingInspection\")\r\n\r\npackage com.example.tgmrentify.view\r\n\r\nimport android.os.Bundle\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.navigation.NavGraph\r\nimport androidx.navigation.fragment.findNavController\r\nimport androidx.recyclerview.widget.LinearLayoutManager\r\nimport com.example.tgmrentify.NavGraphDirections\r\nimport com.example.tgmrentify.databinding.FragmentLandlordDashboardBinding\r\nimport com.example.tgmrentify.model.Property\r\nimport com.example.tgmrentify.model.PropertyType\r\nimport com.example.tgmrentify.repository.LandlordRepository\r\nimport com.example.tgmrentify.view.adapter.LandlordGridAdapter\r\nimport com.example.tgmrentify.view.adapter.PropertyTypeAdapter\r\nimport com.example.tgmrentify.viewModel.LandlordViewModel\r\nimport com.example.tgmrentify.viewModel.LandlordViewModelFactory\r\nimport com.google.android.material.snackbar.Snackbar\r\n\r\nclass LandlordDashboardFragment : Fragment() {\r\n\r\n    private var _binding: FragmentLandlordDashboardBinding? = null\r\n    private val binding get() = _binding!!\r\n\r\n    private val viewModel: LandlordViewModel by viewModels {\r\n        LandlordViewModelFactory(LandlordRepository())\r\n    }\r\n\r\n    private lateinit var propertyTypeAdapter: PropertyTypeAdapter\r\n    private lateinit var landlordGridAdapter: LandlordGridAdapter\r\n\r\n    private val propertyTypes = mutableListOf(\r\n        PropertyType(\"All\", true),\r\n        PropertyType(\"Apartment\"),\r\n        PropertyType(\"House\"),\r\n        PropertyType(\"Villa\"),\r\n        PropertyType(\"Annex\")\r\n    )\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        _binding = FragmentLandlordDashboardBinding.inflate(inflater, container, false)\r\n        return binding.root\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        setupAdapters()\r\n        setupListeners()\r\n        observeViewModel()\r\n        loadInitialData()\r\n    }\r\n\r\n    private fun setupAdapters() {\r\n        // 1. Property Type Filters\r\n        propertyTypeAdapter = PropertyTypeAdapter { selectedType ->\r\n            handleTypeFilter(selectedType)\r\n        }\r\n        binding.recyclerViewFilters.apply {\r\n            adapter = propertyTypeAdapter\r\n            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)\r\n            propertyTypeAdapter.submitList(propertyTypes.toList())\r\n        }\r\n\r\n        // 2. Landlord Properties Grid\r\n        landlordGridAdapter = LandlordGridAdapter { property ->\r\n            // Navigation Trigger\r\n            navigateToPropertyDetails(property)\r\n        }\r\n        binding.recyclerViewLandlordPropertiesGrid.apply {\r\n            adapter = landlordGridAdapter\r\n        }\r\n    }\r\n\r\n    private fun loadInitialData() {\r\n        viewModel.loadLandlordProperties()\r\n    }\r\n\r\n    private fun setupListeners() {\r\n        // Define any other listeners here\r\n    }\r\n\r\n    private fun observeViewModel() {\r\n        viewModel.properties.observe(viewLifecycleOwner) { properties ->\r\n            landlordGridAdapter.submitList(properties)\r\n        }\r\n    }\r\n\r\n    private fun handleTypeFilter(selectedType: PropertyType) {\r\n        val updatedList = propertyTypes.map {\r\n            it.copy(isSelected = it.name == selectedType.name)\r\n        }\r\n        propertyTypes.clear()\r\n        propertyTypes.addAll(updatedList)\r\n        propertyTypeAdapter.submitList(propertyTypes.toList())\r\n        \r\n        // In a real app, you would filter the list in the ViewModel\r\n        Snackbar.make(binding.root, \"Filter: ${selectedType.name}\", Snackbar.LENGTH_SHORT).show()\r\n    }\r\n\r\n    private fun navigateToPropertyDetails(property: Property?) {\r\n        if (property == null) return\r\n\r\n        try {\r\n            // Using GLOBAL ACTION via NavGraphDirections to fix \"Destination not found\" issues\r\n            // This works regardless of whether the fragment is manually swapped or navigated to\r\n            val action = NavGraphDirections.actionGlobalLandlordDetails(property)\r\n            findNavController().navigate(action)\r\n        } catch (e: Exception) {\r\n            // Log the error to Snackbar to debug why it's crashing\r\n            e.printStackTrace()\r\n            Snackbar.make(binding.root, \"Nav Error: ${e.message}\", Snackbar.LENGTH_LONG).show()\r\n        }\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/tgmrentify/view/LandlordDashboardFragment.kt b/app/src/main/java/com/example/tgmrentify/view/LandlordDashboardFragment.kt
+--- a/app/src/main/java/com/example/tgmrentify/view/LandlordDashboardFragment.kt	(revision de3cd25764d00457711480c7448ff345a38f5bca)
++++ b/app/src/main/java/com/example/tgmrentify/view/LandlordDashboardFragment.kt	(date 1765388656380)
+@@ -13,7 +13,6 @@
+ import androidx.recyclerview.widget.LinearLayoutManager
+ import com.example.tgmrentify.NavGraphDirections
+ import com.example.tgmrentify.databinding.FragmentLandlordDashboardBinding
+-import com.example.tgmrentify.model.Property
+ import com.example.tgmrentify.model.PropertyType
+ import com.example.tgmrentify.repository.LandlordRepository
+ import com.example.tgmrentify.view.adapter.LandlordGridAdapter

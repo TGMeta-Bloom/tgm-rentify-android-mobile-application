@@ -3,7 +3,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-parcelize")
+    // Add Google Services plugin (from HEAD)
+    alias(libs.plugins.google.services)
+    // Add Parcelize plugin (from development, converted to alias)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -72,4 +75,9 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Firebase (BOM + Auth + Firestore)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
 }

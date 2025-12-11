@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.tgmrentify.R
 import com.example.tgmrentify.databinding.FragmentLandlordPropertyDetailsBinding
@@ -17,9 +16,6 @@ class LandlordPropertyDetailsFragment : Fragment() {
 
     private var _binding: FragmentLandlordPropertyDetailsBinding? = null
     private val binding get() = _binding!!
-    
-    // Argument to receive the passed Property object
-    private val args: LandlordPropertyDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,11 +28,20 @@ class LandlordPropertyDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val property = args.property
-        setupUI(property)
+        // Retrieve the property object manually from arguments
+        // This replaces 'by navArgs()' to fix the unresolved reference build error
+        val property = arguments?.getParcelable<Property>("property")
+
+        if (property != null) {
+            setupUI(property)
+        } else {
+            Snackbar.make(binding.root, "Error loading property details", Snackbar.LENGTH_LONG).show()
+            findNavController().navigateUp()
+        }
+
         setupListeners()
     }
-    
+
     private fun setupUI(property: Property) {
         // Bind data to UI elements
         binding.textDetailTitle.text = property.title
@@ -47,7 +52,7 @@ class LandlordPropertyDetailsFragment : Fragment() {
         binding.textDetailType.text = property.propertyType
         binding.textDetailStatus.text = property.status
         binding.textDetailContact.text = property.contactNumber
-        
+
         // Load Image
          Glide.with(this)
             .load(property.imageUrls.firstOrNull())
