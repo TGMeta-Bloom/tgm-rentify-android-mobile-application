@@ -10,14 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tgmrentify.NavGraphDirections
 import com.example.tgmrentify.databinding.FragmentLandlordDashboardBinding
 import com.example.tgmrentify.model.Property
 import com.example.tgmrentify.model.PropertyType
-import com.example.tgmrentify.repository.LandlordRepository
 import com.example.tgmrentify.view.adapter.LandlordGridAdapter
 import com.example.tgmrentify.view.adapter.PropertyTypeAdapter
 import com.example.tgmrentify.viewModel.LandlordViewModel
-import com.example.tgmrentify.viewModel.LandlordViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 class LandlordDashboardFragment : Fragment() {
@@ -25,9 +24,8 @@ class LandlordDashboardFragment : Fragment() {
     private var _binding: FragmentLandlordDashboardBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LandlordViewModel by viewModels {
-        LandlordViewModelFactory(LandlordRepository())
-    }
+    // Updated: Use simple initialization since ViewModel has a default constructor
+    private val viewModel: LandlordViewModel by viewModels()
 
     private lateinit var propertyTypeAdapter: PropertyTypeAdapter
     private lateinit var landlordGridAdapter: LandlordGridAdapter
@@ -54,7 +52,7 @@ class LandlordDashboardFragment : Fragment() {
         setupAdapters()
         setupListeners()
         observeViewModel()
-        loadInitialData()
+        // loadInitialData() - Removed because ViewModel loads data automatically on init
     }
 
     private fun setupAdapters() {
@@ -78,18 +76,22 @@ class LandlordDashboardFragment : Fragment() {
         }
     }
 
-    private fun loadInitialData() {
-        viewModel.loadLandlordProperties()
-    }
-
     private fun setupListeners() {
         // Define any other listeners here
     }
 
     private fun observeViewModel() {
-        viewModel.properties.observe(viewLifecycleOwner) { properties ->
+        // Updated: Observe 'landlordProperties' instead of 'properties'
+        viewModel.landlordProperties.observe(viewLifecycleOwner) { properties ->
             landlordGridAdapter.submitList(properties)
         }
+        
+        // Optional: Handle loading/errors if you want
+        /*
+        viewModel.isProcessing.observe(viewLifecycleOwner) { isLoading ->
+             // Show/Hide progress
+        }
+        */
     }
 
     private fun handleTypeFilter(selectedType: PropertyType) {
@@ -108,12 +110,10 @@ class LandlordDashboardFragment : Fragment() {
         if (property == null) return
 
         try {
-            // Using Safe Args generated class
-            val action = LandlordDashboardFragmentDirections
-                .actionLandlordDashboardFragmentToPropertyDetailsFragment(property)
+            // Using GLOBAL ACTION via NavGraphDirections to fix "Destination not found" issues
+            val action = NavGraphDirections.actionGlobalLandlordDetails(property)
             findNavController().navigate(action)
         } catch (e: Exception) {
-            // Log the error to Snackbar to debug why it's crashing
             e.printStackTrace()
             Snackbar.make(binding.root, "Nav Error: ${e.message}", Snackbar.LENGTH_LONG).show()
         }

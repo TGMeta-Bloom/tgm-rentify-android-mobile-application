@@ -8,7 +8,9 @@ class LandlordViewModelFactory(private val repository: LandlordRepository) : Vie
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LandlordViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return LandlordViewModel(repository) as T
+            // Fix: LandlordViewModel uses a default constructor and initializes its own repository.
+            // We do not pass 'repository' here anymore to avoid the "Too many arguments" error.
+            return LandlordViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

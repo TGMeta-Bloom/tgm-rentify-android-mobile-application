@@ -2,21 +2,27 @@ package com.example.tgmrentify.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tgmrentify.R
 import com.example.tgmrentify.databinding.FragmentLandlordMyPropertiesBinding
 import com.example.tgmrentify.model.Property
 import com.example.tgmrentify.view.adapter.LandlordPropertiesAdapter
-import java.util.UUID
+import com.example.tgmrentify.viewModel.LandlordViewModel
 
 class LandlordMyPropertiesFragment : Fragment() {
 
     private var _binding: FragmentLandlordMyPropertiesBinding? = null
     private val binding get() = _binding!!
+
+    // Initialize ViewModel
+    private val viewModel: LandlordViewModel by viewModels()
+    private lateinit var adapter: LandlordPropertiesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,54 +37,21 @@ class LandlordMyPropertiesFragment : Fragment() {
 
         setupRecyclerView()
         setupListeners()
+        observeViewModel()
     }
 
     private fun setupRecyclerView() {
-        // Mock Data
-        val properties = listOf(
-            Property(
-                propertyId = UUID.randomUUID().toString(),
-                landlordId = "user1",
-                title = "Cozy Apartment in Colombo 7",
-                description = "3-bedroom apartment with sea view and rooftop gym.",
-                location = "Colombo",
-                rentAmount = 170000.0,
-                propertyType = "Apartment",
-                contactNumber = "077-3344556",
-                imageUrls = listOf("dummy_url")
-            ),
-            Property(
-                propertyId = UUID.randomUUID().toString(),
-                landlordId = "user1",
-                title = "Luxury Villa in Kandy",
-                description = "Spacious villa with a large garden and pool.",
-                location = "Kandy",
-                rentAmount = 250000.0,
-                propertyType = "Villa",
-                contactNumber = "077-1122334",
-                imageUrls = listOf("dummy_url_2")
-            ),
-            Property(
-                propertyId = UUID.randomUUID().toString(),
-                landlordId = "user1",
-                title = "Modern House in Galle",
-                description = "Beautiful house near the fort with historical architecture.",
-                location = "Galle",
-                rentAmount = 120000.0,
-                propertyType = "House",
-                contactNumber = "071-9988776",
-                imageUrls = listOf("dummy_url_3")
-            )
-        )
-
-        val adapter = LandlordPropertiesAdapter(
-            properties,
+        // Initialize Adapter with empty list
+        adapter = LandlordPropertiesAdapter(
+            emptyList(),
             onEditClick = { property ->
                 // Navigate to Edit Fragment
+                // TODO: Pass property via safe args or bundle if needed
                 findNavController().navigate(R.id.action_LandlordPropertiesFragment_to_LandlordPropertyEditFormFragment)
             },
             onDeleteClick = { property ->
                 // Navigate to Delete Confirm Fragment
+                // TODO: Pass property via safe args or bundle if needed
                 findNavController().navigate(R.id.action_LandlordPropertiesFragment_to_LandlordPropertyDeleteConfirmFragment)
             }
         )
@@ -87,10 +60,38 @@ class LandlordMyPropertiesFragment : Fragment() {
         binding.rvProperties.adapter = adapter
     }
 
+    private fun observeViewModel() {
+        // Observe Real Data from Firestore
+        viewModel.landlordProperties.observe(viewLifecycleOwner) { properties ->
+            if (properties.isNullOrEmpty()) {
+                // Show empty state if needed, or just clear list
+                adapter.updateProperties(emptyList())
+            } else {
+                adapter.updateProperties(properties)
+            }
+        }
+
+        // Observe Loading State (Optional: Add a ProgressBar to your layout to use this)
+        viewModel.isProcessing.observe(viewLifecycleOwner) { isLoading ->
+            // binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        // Observe Errors
+        viewModel.errorEvent.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                viewModel.clearError()
+            }
+        }
+    }
+
     private fun setupListeners() {
         binding.btnBack.setOnClickListener {
             findNavController().navigateUp()
         }
+        
+        // Add button listener if you have a FAB or button to add new property
+        // binding.btnAddProperty.setOnClickListener { ... }
     }
 
     override fun onDestroyView() {
