@@ -30,6 +30,11 @@ class ForgotPasswordResetActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (newPassword.length < 6) {
+                Toast.makeText(this, "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (newPassword != repeatPassword) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -40,7 +45,7 @@ class ForgotPasswordResetActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        
+
         tvBackToLogin.setOnClickListener {
             // Navigate back to Login
             val intent = Intent(this, LoginActivity::class.java)
@@ -50,7 +55,7 @@ class ForgotPasswordResetActivity : AppCompatActivity() {
         }
         
         btnHeaderBack.setOnClickListener {
-             // Typically navigating back from Reset would go to Login or close the "link" flow
+            // Typically navigating back from Reset would go to Login or close the "link" flow
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)

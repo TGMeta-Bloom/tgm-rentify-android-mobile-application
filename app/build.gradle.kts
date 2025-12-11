@@ -3,10 +3,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    // Add Google Services plugin (from HEAD)
-    alias(libs.plugins.google.services)
-    // Add Parcelize plugin (from development, converted to alias)
-    alias(libs.plugins.kotlin.parcelize)
+    id("kotlin-parcelize")
+    alias(libs.plugins.androidx.navigation.safeargs)
+    // Firebase Google Services Plugin
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -54,9 +54,18 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Firebase BOM (Bill of Materials)
+    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
 
     // For ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -75,9 +84,4 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-
-    // Firebase (BOM + Auth + Firestore)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
 }

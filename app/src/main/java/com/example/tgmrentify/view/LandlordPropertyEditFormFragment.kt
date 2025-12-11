@@ -34,6 +34,7 @@ class LandlordPropertyEditFormFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +45,7 @@ class LandlordPropertyEditFormFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         setupSpinner()
 
         binding.btnBack.setOnClickListener {
@@ -56,7 +57,7 @@ class LandlordPropertyEditFormFragment : Fragment() {
                 // Navigate to Success Screen
                 findNavController().navigate(R.id.action_LandlordPropertyEditFormFragment_to_LandlordPropertyEditSuccessFragment)
             } else {
-                 // Show popup message
+                // Show popup message
                 Toast.makeText(requireContext(), "Edit your property first", Toast.LENGTH_SHORT).show()
             }
         }
@@ -65,7 +66,7 @@ class LandlordPropertyEditFormFragment : Fragment() {
             showImageSourceDialog()
         }
     }
-    
+
     private fun validateForm(): Boolean {
         val title = binding.etPropertyTitle.text.toString().trim()
         val description = binding.etPropertyDescription.text.toString().trim()

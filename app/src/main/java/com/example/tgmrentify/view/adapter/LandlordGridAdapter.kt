@@ -23,6 +23,7 @@ class LandlordGridAdapter(
         return PropertyViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
         holder.bind(getItem(position))
     }

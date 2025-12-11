@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <!-- Fixed height for image ensures it is always visible -->
         <ImageView
             android:id="@+id/image_property"

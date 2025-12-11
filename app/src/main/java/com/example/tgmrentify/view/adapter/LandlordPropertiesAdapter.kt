@@ -6,14 +6,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.tgmrentify.R
 import com.example.tgmrentify.model.Property
 
 class LandlordPropertiesAdapter(
-    private val properties: List<Property>,
+    private var properties: List<Property>,
     private val onEditClick: (Property) -> Unit,
     private val onDeleteClick: (Property) -> Unit
 ) : RecyclerView.Adapter<LandlordPropertiesAdapter.PropertyViewHolder>() {
+
+    fun updateProperties(newProperties: List<Property>) {
+        this.properties = newProperties
+        notifyDataSetChanged()
+    }
+
 
     inner class PropertyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivPropertyImage: ImageView = itemView.findViewById(R.id.iv_property_image)
@@ -34,19 +41,26 @@ class LandlordPropertiesAdapter(
 
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
         val property = properties[position]
-        
+
         holder.tvTitle.text = property.title
         holder.tvDescription.text = property.description
         holder.tvLocation.text = property.location
         holder.tvPrice.text = "Rs. ${property.rentAmount.toInt()}"
         holder.tvType.text = property.propertyType
         holder.tvContact.text = property.contactNumber
-        
-        // Load image (Placeholder logic, ideally use Glide)
-        // holder.ivPropertyImage.setImageResource(R.drawable.ic_property_image2) 
-        // Since we have static resources for now, let's just leave the default from XML or cycle them if needed.
-        // For simplicity in this step, we rely on the XML default.
-        
+
+        // Load image using Glide
+        val imageUrl = property.imageUrls.firstOrNull()
+        if (!imageUrl.isNullOrEmpty()) {
+            Glide.with(holder.itemView.context)
+                .load(imageUrl)
+                .placeholder(R.drawable.ic_property_image2) // Ensure this drawable exists or use a default
+                .error(R.drawable.ic_property_image2)
+                .into(holder.ivPropertyImage)
+        } else {
+            holder.ivPropertyImage.setImageResource(R.drawable.ic_property_image2)
+        }
+
         holder.btnEdit.setOnClickListener { onEditClick(property) }
         holder.btnDelete.setOnClickListener { onDeleteClick(property) }
     }

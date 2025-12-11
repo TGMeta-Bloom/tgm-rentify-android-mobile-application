@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tgmrentify.R
+import com.example.tgmrentify.NavGraphDirections
 import com.example.tgmrentify.databinding.FragmentLandlordDashboardBinding
 import com.example.tgmrentify.model.Property
 import com.example.tgmrentify.model.PropertyType
@@ -109,11 +110,10 @@ class LandlordDashboardFragment : Fragment() {
         if (property == null) return
 
         try {
-            // Replaced NavGraphDirections with Bundle to bypass unresolved reference
-            val bundle = Bundle().apply {
-                putParcelable("property", property)
-            }
-            findNavController().navigate(R.id.actionGlobalLandlordDetails, bundle)
+            // Using GLOBAL ACTION via NavGraphDirections to fix "Destination not found" issues
+            // This works regardless of whether the fragment is manually swapped or navigated to
+            val action = NavGraphDirections.actionGlobalLandlordDetails(property)
+            findNavController().navigate(action)
         } catch (e: Exception) {
             // Log the error to Snackbar to debug why it's crashing
             e.printStackTrace()

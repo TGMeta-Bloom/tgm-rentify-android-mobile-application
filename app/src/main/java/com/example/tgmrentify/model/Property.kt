@@ -16,3 +16,4 @@ data class Property(
     val contactNumber: String = "077-1234567", // Default contact
     val imageUrls: List<String>
 ) : Parcelable
+

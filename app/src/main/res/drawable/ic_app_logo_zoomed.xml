@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- EXTREME ZOOM: Using massive negative margins (-500dp) to crop the transparent borders. -->
+    <item
+        android:top="-500dp"
+        android:bottom="-500dp"
+        android:left="-500dp"
+        android:right="-500dp">
+        <bitmap
+            android:src="@drawable/ic_app_logo"
+            android:gravity="center" />
+    </item>
+</layer-list>

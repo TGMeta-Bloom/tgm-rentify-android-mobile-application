@@ -1,62 +1,131 @@
 package com.example.tgmrentify.repository
-import com.example.tgmrentify.model.Property
-import kotlinx.coroutines.delay
 
-/**
- * Placeholder Repository for Landlord Module.
- * In the final version, this class will handle Firebase Firestore/Storage calls.
- */
+import android.net.Uri
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.tgmrentify.model.Property
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.tasks.await
+import java.util.UUID
+
 class LandlordRepository {
 
-    /**
-     * Simulates fetching properties belonging ONLY to the logged-in landlord (data isolation).
-     */
-    suspend fun getLandlordProperties(landlordId: String): List<Property> {
-        // Simulate network/database latency
-        delay(1000)
+    private val firestore = FirebaseFirestore.getInstance()
+    private val storage = FirebaseStorage.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val propertiesCollection = firestore.collection("properties")
 
-        // Return static mock data for the frontend demo
-        return listOf(
-            Property(
-                propertyId = "P001",
-                landlordId = landlordId,
-                title = "Modern City Apartment",
-                location = "Colombo 03",
-                rentAmount = 120000.0,
-                imageUrls = listOf("https://picsum.photos/id/1/200/300")
-            ),
-            Property(
-                propertyId = "P002",
-                landlordId = landlordId,
-                title = "Family House",
-                location = "Kaduwela",
-                rentAmount = 65000.0,
-                imageUrls = listOf("https://picsum.photos/id/10/200/300")
-            ),
-            Property(
-                propertyId = "P003",
-                landlordId = landlordId,
-                title = "Studio near University",
-                location = "Nugegoda",
-                rentAmount = 35000.0,
-                imageUrls = listOf("https://picsum.photos/id/20/200/300")
-            ),
-                    Property(
-                        propertyId = "P004",
-                        landlordId = landlordId,
-                        title = "Modern Annex",
-                        location = "Matara",
-                        rentAmount = 35000.0,
-                        imageUrls = listOf("https://picsum.photos/id/20/200/300")
-                    ),
-            Property(
-                propertyId = "P004",
-                landlordId = landlordId,
-                title = "villa near University",
-                location = "Akuressa",
-                rentAmount = 35000.0,
-                imageUrls = listOf("https://picsum.photos/id/20/200/300")
-            )
-        )
+    // Get current landlord's ID safely
+    private val currentUserId: String?
+        get() = auth.currentUser?.uid
+
+    /**
+     * Fetch properties for the currently logged-in landlord
+     */
+    fun getLandlordProperties(): LiveData<List<Property>> {
+        val propertiesLiveData = MutableLiveData<List<Property>>()
+        val landlordId = currentUserId ?: return propertiesLiveData
+
+        propertiesCollection
+            .whereEqualTo("landlordId", landlordId)
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    Log.e("LandlordRepo", "Listen failed.", error)
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null) {
+                    val propertyList = snapshot.documents.mapNotNull { doc ->
+                        // Manually map fields to Property because direct .toObject() needs no-arg constructor
+                        // which data classes might not have without default values or plugins
+                        try {
+                            Property(
+                                propertyId = doc.getString("propertyId") ?: doc.id,
+                                landlordId = doc.getString("landlordId") ?: "",
+                                title = doc.getString("title") ?: "",
+                                description = doc.getString("description") ?: "",
+                                location = doc.getString("location") ?: "",
+                                rentAmount = doc.getDouble("rentAmount") ?: 0.0,
+                                propertyType = doc.getString("propertyType") ?: "Apartment",
+                                status = doc.getString("status") ?: "Available",
+                                contactNumber = doc.getString("contactNumber") ?: "",
+                                imageUrls = (doc.get("imageUrls") as? List<String>) ?: emptyList()
+                            )
+                        } catch (e: Exception) {
+                            Log.e("LandlordRepo", "Error mapping document: ${doc.id}", e)
+                            null
+                        }
+                    }
+                    propertiesLiveData.value = propertyList
+                }
+            }
+        return propertiesLiveData
+    }
+
+    /**
+     * Add a new property to Firestore
+     */
+    suspend fun addProperty(property: Property) {
+        // Ensure propertyId is consistent if not provided
+        val finalProperty = if (property.propertyId.isEmpty()) {
+            property.copy(propertyId = UUID.randomUUID().toString())
+        } else {
+            property
+        }
+
+        propertiesCollection.document(finalProperty.propertyId).set(finalProperty).await()
+    }
+
+    /**
+     * Update an existing property in Firestore
+     */
+    suspend fun updateProperty(property: Property) {
+        propertiesCollection.document(property.propertyId).set(property).await()
+    }
+
+    /**
+     * Delete a property and its associated images
+     */
+    suspend fun deleteProperty(propertyId: String) {
+        val landlordId = currentUserId ?: throw Exception("User not logged in")
+
+        // 1. Delete Firestore Document
+        propertiesCollection.document(propertyId).delete().await()
+
+        // 2. Delete Images from Storage (Best Effort)
+        // Note: Firebase Storage doesn't support deleting a folder directly.
+        // We typically need to list files and delete them.
+        // However, since we might not know all filenames without a list call (which is async),
+        // we can try to delete known paths or skip this step if handled by Cloud Functions.
+        // For this specific requirement "include logic to delete images":
+
+        try {
+            val storageRef = storage.reference.child("property_images/$landlordId/$propertyId")
+            val listResult = storageRef.listAll().await()
+            for (item in listResult.items) {
+                item.delete().await()
+            }
+        } catch (e: Exception) {
+            Log.e("LandlordRepo", "Error deleting images for property: $propertyId", e)
+            // We don't block the property deletion if image deletion fails (e.g., folder empty)
+        }
+    }
+
+    /**
+     * Upload an image to Firebase Storage and return the download URL
+     */
+
+    suspend fun uploadPropertyImage(uri: Uri, propertyId: String): String {
+        val landlordId = currentUserId ?: throw Exception("User not logged in")
+        val uniqueFilename = UUID.randomUUID().toString() + ".jpg"
+
+        // Path: property_images/{landlordId}/{propertyId}/{unique_filename}.jpg
+        val ref = storage.reference.child("property_images/$landlordId/$propertyId/$uniqueFilename")
+
+        ref.putFile(uri).await()
+        return ref.downloadUrl.await().toString()
     }
 }

@@ -1,10 +1,9 @@
 package com.example.tgmrentify
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.tgmrentify.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +19,8 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // This is the line that makes your bottom nav bar work!
-        //mihili
-        binding.bottomNavigation.setupWithNavController(navController)
+        // Use NavigationUI to connect both the bottom and side navigation
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
+        NavigationUI.setupWithNavController(binding.navView, navController)
     }
 }

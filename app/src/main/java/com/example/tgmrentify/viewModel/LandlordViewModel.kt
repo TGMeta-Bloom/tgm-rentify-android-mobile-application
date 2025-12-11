@@ -1,5 +1,6 @@
 package com.example.tgmrentify.viewModel
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,35 +9,95 @@ import com.example.tgmrentify.model.Property
 import com.example.tgmrentify.repository.LandlordRepository
 import kotlinx.coroutines.launch
 
-// Note: For simplicity, we are instantiating the repository directly.
-// In a production app, use Dependency Injection (like Hilt/Koin).
-class LandlordViewModel(
-    private val repository: LandlordRepository = LandlordRepository()
-) : ViewModel() {
+class LandlordViewModel : ViewModel() {
 
-    // LiveData to hold the list of properties for the UI to observe
-    private val _properties = MutableLiveData<List<Property>>()
-    val properties: LiveData<List<Property>> = _properties
+    private val repository = LandlordRepository()
 
-    // Simulate the ID of the logged-in user
-    private val currentLandlordId = "LANDLORD_123"
+    // LiveData for the list of properties
+    val landlordProperties: LiveData<List<Property>> = repository.getLandlordProperties()
 
-    init {
-        // Automatically load properties when the ViewModel is created
-        loadLandlordProperties()
-    }
+    // Loading State
+    private val _isProcessing = MutableLiveData<Boolean>()
+    val isProcessing: LiveData<Boolean> get() = _isProcessing
 
-    fun loadLandlordProperties() {
+    // Error Handling
+    private val _errorEvent = MutableLiveData<String?>()
+    val errorEvent: LiveData<String?> get() = _errorEvent
+
+    // Success Event (optional, for navigation or toasts)
+    private val _operationSuccess = MutableLiveData<Boolean>()
+    val operationSuccess: LiveData<Boolean> get() = _operationSuccess
+
+    /**
+     * Add or Update a Property
+     */
+    fun saveProperty(property: Property, isNew: Boolean) {
+        _isProcessing.value = true
         viewModelScope.launch {
             try {
-                // Fetch data from the repository (simulating Firestore call)
-                val propertyList = repository.getLandlordProperties(currentLandlordId)
-                _properties.value = propertyList
+                if (isNew) {
+                    repository.addProperty(property)
+                } else {
+                    repository.updateProperty(property)
+                }
+                _operationSuccess.value = true
+                _errorEvent.value = null // Clear any previous errors
             } catch (e: Exception) {
-                // Handle error (e.g., set an error LiveData)
-                e.printStackTrace()
-                _properties.value = emptyList()
+                _errorEvent.value = "Failed to save property: ${e.message}"
+                _operationSuccess.value = false
+            } finally {
+                _isProcessing.value = false
             }
         }
+    }
+
+    /**
+     * Delete a Property
+     */
+    fun deleteProperty(propertyId: String) {
+        _isProcessing.value = true
+        viewModelScope.launch {
+            try {
+                repository.deleteProperty(propertyId)
+                _operationSuccess.value = true
+                _errorEvent.value = null
+            } catch (e: Exception) {
+                _errorEvent.value = "Failed to delete property: ${e.message}"
+                _operationSuccess.value = false
+            } finally {
+                _isProcessing.value = false
+            }
+        }
+    }
+
+    /**
+     * Upload Image and return the download URL via callback (or handle internally)
+     * For simplicity, this function uses a callback lambda for the result URL,
+     * but you could also use another LiveData.
+     */
+    fun uploadImage(uri: Uri, propertyId: String, onResult: (String?) -> Unit) {
+        _isProcessing.value = true
+        viewModelScope.launch {
+            try {
+                val downloadUrl = repository.uploadPropertyImage(uri, propertyId)
+                onResult(downloadUrl)
+                _errorEvent.value = null
+            } catch (e: Exception) {
+                _errorEvent.value = "Image upload failed: ${e.message}"
+                onResult(null)
+            } finally {
+                _isProcessing.value = false
+            }
+        }
+    }
+
+
+    // Helper to reset events after they are consumed by the UI
+    fun clearError() {
+        _errorEvent.value = null
+    }
+
+    fun clearSuccess() {
+        _operationSuccess.value = false
     }
 }

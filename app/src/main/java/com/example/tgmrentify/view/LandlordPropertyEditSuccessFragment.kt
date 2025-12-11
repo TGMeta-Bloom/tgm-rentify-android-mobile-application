@@ -31,6 +31,7 @@ class LandlordPropertyEditSuccessFragment : Fragment() {
         }
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
